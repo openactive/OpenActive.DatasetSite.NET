@@ -11,7 +11,7 @@ Please find full documentation that covers creation of accompanying GitHub issue
 - [Requirements](#requirements)
 - [Dependencies](#dependencies)
 - [Usage options](#usage-options)
-    - [Simple configuration](#simple-configuration)
+    - [Simple implementation](#simple-implementation)
     - [Feed-level customisation](#feed-level-customisation)
     - [Model-level customisation](#model-level-customisation)
 	- [Total customisation](#total-customisation)
@@ -28,7 +28,7 @@ This library makes use of [datasetsite.mustache](https://github.com/openactive/d
 
 Simply call one of the Render methods detailed below to output self-contained HTML of the dataset site, which includes embedded styles.
 
-### Simple configuration
+### Simple implementation
 
 > `RenderSimpleDatasetSite(settings, supportedFeedTypes)`
 
