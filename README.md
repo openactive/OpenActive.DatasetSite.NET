@@ -1,5 +1,5 @@
 ﻿# OpenActive.DatasetSite.NET [![Nuget](https://img.shields.io/nuget/v/OpenActive.DatasetSite.NET.svg)](https://www.nuget.org/packages/OpenActive.DatasetSite.NET/)
-C# .NET classes and resources supporting dataset site creation, to create something like [this example](https://opendata.fusion-lifestyle.com/OpenActive/) (or any of the other examples listed [here](http://status.openactive.io/)).
+C# .NET helper functions supporting dataset site creation, to create something like [this example](https://opendata.fusion-lifestyle.com/OpenActive/) (or any of the other examples listed [here](http://status.openactive.io/)).
 
 This package intends to simplify creation of dataset sites using templates.
 
