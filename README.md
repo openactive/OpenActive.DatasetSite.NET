@@ -300,6 +300,7 @@ public class DatasetSiteController : Controller
                 }
             },
             DatePublished = settings.DateFirstPublished,
+            DateModified = DateTimeOffset.UtcNow,
             BackgroundImage = new ImageObject
             {
                 Url = settings.BackgroundImageUrl
