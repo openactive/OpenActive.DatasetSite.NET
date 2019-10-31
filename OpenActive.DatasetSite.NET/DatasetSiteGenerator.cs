@@ -47,7 +47,7 @@ namespace OpenActive.DatasetSite.NET
         /// </summary>
         /// <param name="list">List of nouns</param>
         /// <returns>String containing human readable list</returns>
-        private static string ToHumanisedList(this List<string> list)
+        public static string ToHumanisedList(this List<string> list)
         {
             const string separator = ", ";
             var humanList = String.Join(separator, list);
