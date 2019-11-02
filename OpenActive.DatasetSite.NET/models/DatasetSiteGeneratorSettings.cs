@@ -6,15 +6,12 @@ namespace OpenActive.DatasetSite.NET
 {
     public class DatasetSiteGeneratorSettings
     {
+        // **** OPEN DATA ****
+
         /// <summary>
         /// The the base URL for the open data feeds.
         /// </summary>
         public Uri OpenDataFeedBaseUrl { get; set; }
-
-        /// <summary>
-        /// The the base URL for the Open Booking API.
-        /// </summary>
-        public Uri OpenBookingAPIBaseUrl { get; set; }
 
         /// <summary>
         /// The URL where this dataset site is displayed (the dataset homepage's own URL).
@@ -89,6 +86,29 @@ namespace OpenActive.DatasetSite.NET
         /// The date the dataset was first published.
         /// </summary>
         public DateTimeOffset DateFirstPublished { get; set; }
+
+        // **** OPEN BOOKING ****
+
+        /// <summary>
+        /// The the base URL for the Open Booking API.
+        /// </summary>
+        public Uri OpenBookingAPIBaseUrl { get; set; }
+
+        /// <summary>
+        /// The the base URL for the Open Booking API.
+        /// </summary>
+        public Uri OpenBookingAPIDocumentationUrl { get; set; }
+
+        /// <summary>
+        /// The the base URL for the Open Booking API.
+        /// </summary>
+        public Uri OpenBookingAPITermsOfServiceUrl { get; set; }
+
+        /// <summary>
+        /// The the base URL for the Open Booking API.
+        /// </summary>
+        public Uri OpenBookingAPIRegistrationUrl { get; set; }
+
 
     }
 }

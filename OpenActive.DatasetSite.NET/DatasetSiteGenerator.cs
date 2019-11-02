@@ -91,7 +91,7 @@ namespace OpenActive.DatasetSite.NET
                 Keywords = keywords,
                 License = new Uri("https://creativecommons.org/licenses/by/4.0/"),
                 DiscussionUrl = settings.DatasetDiscussionUrl,
-                Documentation = settings.DatasetDocumentationUrl,
+                Documentation = settings.DatasetDocumentationUrl ?? new Uri("https://developer.openactive.io/go/open-opportunity-data"),
                 InLanguage = settings.DatasetLanguages,
                 SchemaVersion = new Uri("https://www.openactive.io/modelling-opportunity-data/2.0/"),
                 Publisher = new OpenActive.NET.Organization
@@ -117,6 +117,17 @@ namespace OpenActive.DatasetSite.NET
                     Name = settings.PlatformName,
                     Url = settings.PlatformUrl,
                     SoftwareVersion = settings.PlatformVersion
+                },
+                AccessService = settings.OpenBookingAPIBaseUrl == null ? null : new WebAPI
+                {
+                    Name = "Open Booking API",
+                    Description = $"API that allows for seamless booking experiences to be created for {dataFeedHumanisedList.ToLowerInvariant()} available from {settings.OrganisationName}",
+                    Documentation = settings.OpenBookingAPIDocumentationUrl ?? new Uri("https://developer.openactive.io/go/open-booking-api"),
+                    TermsOfService = settings.OpenBookingAPITermsOfServiceUrl,
+                    EndpointURL = settings.OpenBookingAPIBaseUrl,
+                    ConformsTo = new List<Uri> { new Uri("https://www.openactive.io/open-booking-api/EditorsDraft/") },
+                    EndpointDescription = new Uri("https://www.openactive.io/open-booking-api/EditorsDraft/swagger.json"),
+                    LandingPage = settings.OpenBookingAPIRegistrationUrl
                 }
             };
             return RenderDatasetSite(dataset);
