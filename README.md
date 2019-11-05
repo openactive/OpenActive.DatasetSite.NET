@@ -30,11 +30,11 @@ Simply call one of the Render methods detailed below to output self-contained HT
 
 ### Simple implementation
 
-> `RenderSimpleDatasetSite(settings, supportedFeedTypes)`
+> `RenderSimpleDatasetSite(settings, supportedOpportunityTypes)`
 
-Returns a string corresponding to the compiled HTML, based on an embedded version of `datasetsite.mustache`, the provided `settings`, and `supportedFeedTypes`.
+Returns a string corresponding to the compiled HTML, based on an embedded version of `datasetsite.mustache`, the provided `settings`, and `supportedOpportunityTypes`.
 
-`supportedFeedTypes` must be a `List<FeedType>`, which auto-generates the metadata associated which each feed using best-practice values.
+`supportedOpportunityTypes` must be a `List<OpportunityType>`, which auto-generates the metadata associated which each feed using best-practice values.
 
 `settings` must contain the following object:
 
@@ -92,12 +92,12 @@ public class DatasetSiteController : Controller
             DateFirstPublished = new DateTimeOffset(new DateTime(2019, 01, 14))
         };
 
-        var supportedFeeds = new List<FeedType> {
-            FeedType.SessionSeries,
-            FeedType.ScheduledSession,
-            FeedType.FacilityUse,
-            FeedType.Slot,
-            FeedType.CourseInstance
+        var supportedFeeds = new List<OpportunityType> {
+            OpportunityType.SessionSeries,
+            OpportunityType.ScheduledSession,
+            OpportunityType.FacilityUse,
+            OpportunityType.Slot,
+            OpportunityType.CourseInstance
         };
 
         return Content(DatasetSiteGenerator.RenderSimpleDatasetSite(settings, supportedFeeds), "text/html");

@@ -17,17 +17,18 @@ namespace OpenActive.DatasetSite.NET
         /// <param name="settings">Configuration settings for the dataset site</param>
         /// <param name="supportedFeedTypes">The supplied list auto-generates the metadata associated which each feed using best-practice values.</param>
         /// <returns>String containing human readable list</returns>
-        public static string RenderSimpleDatasetSite(DatasetSiteGeneratorSettings settings, List<FeedType> supportedFeedTypes)
+        public static string RenderSimpleDatasetSite(DatasetSiteGeneratorSettings settings, List<OpportunityType> supportedFeedTypes)
         {
             // Check input is not null
             if (settings == null) throw new ArgumentNullException(nameof(settings));
             if (supportedFeedTypes == null) throw new ArgumentNullException(nameof(supportedFeedTypes));
 
-            var supportedFeedConfigurations = supportedFeedTypes.Select(x => FeedConfigurations.Configurations[x]);
+            var supportedOpportunityTypes = supportedFeedTypes.Select(x => OpportunityTypes.Configurations[x]);
 
-            var dataDownloads = supportedFeedConfigurations
+            var dataDownloads = supportedOpportunityTypes
                 .Select(x => new DataDownload
                 {
+                    Identifier = x.Identifier,
                     Name = x.Name,
                     AdditionalType = x.SameAs,
                     EncodingFormat = OpenActiveDiscovery.MediaTypes.Version1.RealtimePagedDataExchange.ToString(),
@@ -35,7 +36,7 @@ namespace OpenActive.DatasetSite.NET
                 })
                 .ToList();
 
-            var dataFeedDescriptions = supportedFeedConfigurations.Select(x => x.DisplayName).Distinct().ToList();
+            var dataFeedDescriptions = supportedOpportunityTypes.Select(x => x.DisplayName).Distinct().ToList();
 
             return RenderSimpleDatasetSiteFromDataDownloads(settings, dataDownloads, dataFeedDescriptions);
         }

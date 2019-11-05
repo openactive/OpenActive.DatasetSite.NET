@@ -9,7 +9,7 @@ var path = require('path');
 
 removeFiles()
 generateDatasetSiteMustacheTemplate(DATASET_SITE_TEMPLATE_URL);
-generateFeedConfigurations();
+generateOpportunityTypes();
 
 function removeFiles() {
     // Empty output directories
@@ -37,16 +37,16 @@ ${content.replace(/\"/g, '""')}
 `;
 }
 
-function generateFeedConfigurations() {
+function generateOpportunityTypes() {
     // Returns the latest version of the models map
-    const feedConfigurations = getMetaData().feedConfigurations;
+    const opportunityTypes = getMetaData().opportunityTypes;
 
-    if (feedConfigurations) {
-        writeFile('FeedConfigurations', renderFeedConfigurations(feedConfigurations));
+    if (opportunityTypes) {
+        writeFile('OpportunityTypes', renderOpportunityTypes(opportunityTypes));
     }
 }
 
-function renderFeedConfigurations(feedConfigurations) {
+function renderOpportunityTypes(opportunityTypes) {
     return `
 using System;
 using System.Collections.Generic;
@@ -54,24 +54,26 @@ using System.Text;
 
 namespace OpenActive.DatasetSite.NET
 {
-    public enum FeedType
+    public enum OpportunityType
     {
-        ${feedConfigurations.map(c => c.name).join(`,
+        ${opportunityTypes.map(c => c.identifier).join(`,
         `)}
     }
 
-    public static class FeedConfigurations
+    public static class OpportunityTypes
     {
-        public readonly static Dictionary<FeedType, FeedConfiguration> Configurations = new Dictionary<FeedType, FeedConfiguration>
-        {${feedConfigurations.map(c => `
+        public readonly static Dictionary<OpportunityType, OpportunityTypeConfiguration> Configurations = new Dictionary<OpportunityType, OpportunityTypeConfiguration>
+        {${opportunityTypes.map(c => `
             {
-                FeedType.${c.name},
-                new FeedConfiguration {
+                OpportunityType.${c.identifier},
+                new OpportunityTypeConfiguration {
+                    Identifier = "${c.identifier}",
                     Name = "${c.name}",
-                    SameAs = new Uri("${c.sameAs}"),
+                    SameAs = new Uri("${c.sameAs}")${c.parent ? `,               
+                    Parent = OpportunityType.${c.parent}` : ''},
                     DefaultFeedPath = "${c.defaultFeedPath}",
-                    PossibleKinds = new List<string> { ${c.possibleKinds.map(k => `"${k}"`).join(', ')} }${c.displayName ? `,
-                    DisplayName = "${c.displayName}"` : ''}
+                    Bookable = ${c.bookable}${c.displayName ? `,               
+                    ThemeDisplayName = "${c.themeDisplayName}"` : ''}
                 }
             }`).join(',')}
         };
@@ -79,6 +81,7 @@ namespace OpenActive.DatasetSite.NET
 }
 `
 }
+
 
 function getContentFromUrl(url) {
     var response = request('GET', url, { accept: 'text/html' });
