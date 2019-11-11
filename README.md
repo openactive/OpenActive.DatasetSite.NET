@@ -96,7 +96,7 @@ public class DatasetSiteController : Controller
             OpportunityType.SessionSeries,
             OpportunityType.ScheduledSession,
             OpportunityType.FacilityUse,
-            OpportunityType.Slot,
+            OpportunityType.FacilityUseSlot,
             OpportunityType.CourseInstance
         };
 
