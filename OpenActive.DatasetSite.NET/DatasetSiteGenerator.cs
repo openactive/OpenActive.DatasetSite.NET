@@ -156,7 +156,7 @@ namespace OpenActive.DatasetSite.NET
             if (dataset == null) throw new ArgumentNullException(nameof(dataset));
 
             // OpenActive.NET creates complete JSON from the strongly typed structure, complete with schema.org types.
-            var jsonString = dataset.ToOpenActiveHtmlEmbeddableString();
+            var jsonString = OpenActiveSerializer.SerializeToHtmlEmbeddableString(dataset);
 
             // Deserialize the completed JSON object to make it compatible with the mustache template
             JObject jsonObj = JObject.Parse(jsonString);
