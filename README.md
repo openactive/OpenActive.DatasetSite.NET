@@ -242,7 +242,7 @@ public class DatasetSiteController : Controller
             Id = settings.DatasetSiteUrl,
             Url = settings.DatasetSiteUrl,
             Name = settings.OrganisationName + " " + dataFeedHumanisedList,
-            Description = $"Near real-time availability and rich descriptions relating to the {dataFeedHumanisedList.ToLowerInvariant()} available from {settings.OrganisationName}, published using the OpenActive Modelling Specification 2.0.",
+            Description = $"Near real-time availability and rich descriptions relating to the {dataFeedHumanisedList.ToLowerInvariant()} available from {settings.OrganisationName}",
             Keywords = new List<string> {
                 "Sessions",
                 "Facilities",
