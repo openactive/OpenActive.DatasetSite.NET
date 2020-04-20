@@ -19,7 +19,8 @@ namespace OpenActive.DatasetSite.NET
         HeadlineEvent,
         HeadlineEventSubEvent,
         Event,
-        EventSeries
+        EventSeries,
+        OnDemandEvent
     }
 
     public static class OpportunityTypes
@@ -163,6 +164,16 @@ namespace OpenActive.DatasetSite.NET
                     SameAs = new Uri("https://schema.org/EventSeries"),
                     DefaultFeedPath = "event-series",
                     Bookable = false
+                }
+            },
+            {
+                OpportunityType.OnDemandEvent,
+                new OpportunityTypeConfiguration {
+                    Identifier = "OnDemandEvent",
+                    Name = "OnDemandEvent",
+                    SameAs = new Uri("https://schema.org/OnDemandEvent"),
+                    DefaultFeedPath = "on-demand-event",
+                    Bookable = true
                 }
             }
         };
