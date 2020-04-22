@@ -31,7 +31,7 @@ namespace OpenActive.DatasetSite.NET
                     Identifier = x.Identifier,
                     Name = x.Name,
                     AdditionalType = x.SameAs,
-                    EncodingFormat = OpenActiveDiscovery.MediaTypes.Version1.RealtimePagedDataExchange.ToString(),
+                    EncodingFormat = OpenActiveMediaTypes.RealtimePagedDataExchange.Version1,
                     ContentUrl = new Uri(settings.OpenDataFeedBaseUrl + x.DefaultFeedPath)
                 })
                 .ToList();
