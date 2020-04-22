@@ -82,6 +82,9 @@ namespace OpenActive.DatasetSite.NET
                 };
             keywords.InsertRange(0, dataFeedDescriptions);
 
+            DateTime now = DateTime.Now;
+            DateTime dateModified = now - new TimeSpan(0, 0, 0, 0, now.TimeOfDay.Milliseconds);
+
             // Strongly typed JSON generation based on OpenActive.NET
             var dataset = new Dataset
             {
@@ -109,7 +112,7 @@ namespace OpenActive.DatasetSite.NET
                 },
                 Distribution = dataDownloads,
                 DatePublished = settings.DateFirstPublished,
-                DateModified = DateTimeOffset.UtcNow,
+                DateModified = dateModified,
                 BackgroundImage = new ImageObject {
                     Url = settings.BackgroundImageUrl
                 },
