@@ -10,7 +10,7 @@ namespace OpenActive.DatasetSite.NET
         public Uri SameAs { get; internal set; }
         public string DefaultFeedPath { get; internal set; }
         public List<string> PossibleKinds { get; internal set; }
-        public string DisplayName { get; internal set; }
+        public string ThemeDisplayName { get; internal set; }
         public string Identifier { get; internal set; }
         public OpportunityType Parent { get; internal set; }
         public bool Bookable { get; internal set; }

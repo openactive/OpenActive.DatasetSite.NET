@@ -35,7 +35,8 @@ namespace OpenActive.DatasetSite.NET
                     SameAs = new Uri("https://openactive.io/SessionSeries"),               
                     Parent = OpportunityType.EventSeries,
                     DefaultFeedPath = "session-series",
-                    Bookable = false
+                    Bookable = false,               
+                    ThemeDisplayName = "Sessions"
                 }
             },
             {
@@ -46,7 +47,8 @@ namespace OpenActive.DatasetSite.NET
                     SameAs = new Uri("https://openactive.io/ScheduledSession"),               
                     Parent = OpportunityType.SessionSeries,
                     DefaultFeedPath = "scheduled-sessions",
-                    Bookable = true
+                    Bookable = true,               
+                    ThemeDisplayName = "Sessions"
                 }
             },
             {
@@ -56,7 +58,8 @@ namespace OpenActive.DatasetSite.NET
                     Name = "FacilityUse",
                     SameAs = new Uri("https://openactive.io/FacilityUse"),
                     DefaultFeedPath = "facility-uses",
-                    Bookable = false
+                    Bookable = false,               
+                    ThemeDisplayName = "Facilities"
                 }
             },
             {
@@ -66,7 +69,8 @@ namespace OpenActive.DatasetSite.NET
                     Name = "IndividualFacilityUse",
                     SameAs = new Uri("https://openactive.io/IndividualFacilityUse"),
                     DefaultFeedPath = "individual-facility-uses",
-                    Bookable = false
+                    Bookable = false,               
+                    ThemeDisplayName = "Facilities"
                 }
             },
             {
@@ -77,7 +81,8 @@ namespace OpenActive.DatasetSite.NET
                     SameAs = new Uri("https://openactive.io/Slot"),               
                     Parent = OpportunityType.FacilityUse,
                     DefaultFeedPath = "facility-use-slots",
-                    Bookable = true
+                    Bookable = true,               
+                    ThemeDisplayName = "Facilities"
                 }
             },
             {
@@ -88,7 +93,8 @@ namespace OpenActive.DatasetSite.NET
                     SameAs = new Uri("https://openactive.io/Slot"),               
                     Parent = OpportunityType.IndividualFacilityUse,
                     DefaultFeedPath = "individual-facility-use-slots",
-                    Bookable = true
+                    Bookable = true,               
+                    ThemeDisplayName = "Facilities"
                 }
             },
             {
@@ -98,7 +104,8 @@ namespace OpenActive.DatasetSite.NET
                     Name = "Course",
                     SameAs = new Uri("https://schema.org/Course"),
                     DefaultFeedPath = "courses",
-                    Bookable = false
+                    Bookable = false,               
+                    ThemeDisplayName = "Courses"
                 }
             },
             {
@@ -109,7 +116,8 @@ namespace OpenActive.DatasetSite.NET
                     SameAs = new Uri("https://schema.org/CourseInstance"),               
                     Parent = OpportunityType.Course,
                     DefaultFeedPath = "course-instances",
-                    Bookable = true
+                    Bookable = true,               
+                    ThemeDisplayName = "Courses"
                 }
             },
             {
@@ -120,7 +128,8 @@ namespace OpenActive.DatasetSite.NET
                     SameAs = new Uri("https://schema.org/Event"),               
                     Parent = OpportunityType.CourseInstance,
                     DefaultFeedPath = "course-instance-subevents",
-                    Bookable = true
+                    Bookable = true,               
+                    ThemeDisplayName = "Courses"
                 }
             },
             {
@@ -131,7 +140,8 @@ namespace OpenActive.DatasetSite.NET
                     SameAs = new Uri("https://openactive.io/HeadlineEvent"),               
                     Parent = OpportunityType.EventSeries,
                     DefaultFeedPath = "headline-events",
-                    Bookable = true
+                    Bookable = true,               
+                    ThemeDisplayName = "Headline Events"
                 }
             },
             {
@@ -142,7 +152,8 @@ namespace OpenActive.DatasetSite.NET
                     SameAs = new Uri("https://schema.org/Event"),               
                     Parent = OpportunityType.HeadlineEvent,
                     DefaultFeedPath = "headline-event-subevents",
-                    Bookable = true
+                    Bookable = true,               
+                    ThemeDisplayName = "Headline Events"
                 }
             },
             {
@@ -153,7 +164,8 @@ namespace OpenActive.DatasetSite.NET
                     SameAs = new Uri("https://schema.org/Event"),               
                     Parent = OpportunityType.EventSeries,
                     DefaultFeedPath = "events",
-                    Bookable = true
+                    Bookable = true,               
+                    ThemeDisplayName = "Events"
                 }
             },
             {

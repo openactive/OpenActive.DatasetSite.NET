@@ -36,7 +36,7 @@ namespace OpenActive.DatasetSite.NET
                 })
                 .ToList();
 
-            var dataFeedDescriptions = supportedOpportunityTypes.Select(x => x.DisplayName).Distinct().ToList();
+            var dataFeedDescriptions = supportedOpportunityTypes.Select(x => x.ThemeDisplayName).Distinct().ToList();
 
             return RenderSimpleDatasetSiteFromDataDownloads(settings, dataDownloads, dataFeedDescriptions);
         }

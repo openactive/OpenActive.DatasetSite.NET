@@ -72,7 +72,7 @@ namespace OpenActive.DatasetSite.NET
                     SameAs = new Uri("${c.sameAs}")${c.parent ? `,               
                     Parent = OpportunityType.${c.parent}` : ''},
                     DefaultFeedPath = "${c.defaultFeedPath}",
-                    Bookable = ${c.bookable}${c.displayName ? `,               
+                    Bookable = ${c.bookable}${c.themeDisplayName ? `,               
                     ThemeDisplayName = "${c.themeDisplayName}"` : ''}
                 }
             }`).join(',')}
