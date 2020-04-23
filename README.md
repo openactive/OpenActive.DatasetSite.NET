@@ -160,28 +160,32 @@ public class DatasetSiteController : Controller
                 Name = "SessionSeries",
                 AdditionalType = new Uri("https://openactive.io/SessionSeries"),
                 EncodingFormat = OpenActiveMediaTypes.RealtimePagedDataExchange.Version1,
-                ContentUrl = new Uri(settings.OpenDataFeedBaseUrl + "session-series")
+                ContentUrl = new Uri(settings.OpenDataFeedBaseUrl + "session-series"),
+                Identifier = "SessionSeries"
             },
             new DataDownload
             {
                 Name = "ScheduledSession",
                 AdditionalType = new Uri("https://openactive.io/ScheduledSession"),
                 EncodingFormat = OpenActiveMediaTypes.RealtimePagedDataExchange.Version1,
-                ContentUrl = new Uri(settings.OpenDataFeedBaseUrl + "scheduled-sessions")
+                ContentUrl = new Uri(settings.OpenDataFeedBaseUrl + "scheduled-sessions"),
+                Identifier = "ScheduledSession"
             },
             new DataDownload
             {
                 Name = "FacilityUse",
                 AdditionalType = new Uri("https://openactive.io/FacilityUse"),
                 EncodingFormat = OpenActiveMediaTypes.RealtimePagedDataExchange.Version1,
-                ContentUrl = new Uri(settings.OpenDataFeedBaseUrl + "facility-uses")
+                ContentUrl = new Uri(settings.OpenDataFeedBaseUrl + "facility-uses"),
+                Identifier = "FacilityUse"
             },
             new DataDownload
             {
-                Name = "Slot",
+                Name = "Slot for FacilityUse",
                 AdditionalType = new Uri("https://openactive.io/Slot"),
                 EncodingFormat = OpenActiveMediaTypes.RealtimePagedDataExchange.Version1,
-                ContentUrl = new Uri(settings.OpenDataFeedBaseUrl + "slots")
+                ContentUrl = new Uri(settings.OpenDataFeedBaseUrl + "slots"),
+                Identifier = "FacilityUseSlot"
             }
         };
 
@@ -275,28 +279,32 @@ public class DatasetSiteController : Controller
                     Name = "SessionSeries",
                     AdditionalType = new Uri("https://openactive.io/SessionSeries"),
                     EncodingFormat = OpenActiveMediaTypes.RealtimePagedDataExchange.Version1,
-                    ContentUrl = new Uri(settings.OpenDataFeedBaseUrl + "session-series")
+                    ContentUrl = new Uri(settings.OpenDataFeedBaseUrl + "session-series"),
+                    Identifier = "SessionSeries"
                 },
                 new DataDownload
                 {
                     Name = "ScheduledSession",
                     AdditionalType = new Uri("https://openactive.io/ScheduledSession"),
                     EncodingFormat = OpenActiveMediaTypes.RealtimePagedDataExchange.Version1,
-                    ContentUrl = new Uri(settings.OpenDataFeedBaseUrl + "scheduled-sessions")
+                    ContentUrl = new Uri(settings.OpenDataFeedBaseUrl + "scheduled-sessions"),
+                    Identifier = "ScheduledSession"
                 },
                 new DataDownload
                 {
                     Name = "FacilityUse",
                     AdditionalType = new Uri("https://openactive.io/FacilityUse"),
                     EncodingFormat = OpenActiveMediaTypes.RealtimePagedDataExchange.Version1,
-                    ContentUrl = new Uri(settings.OpenDataFeedBaseUrl + "facility-uses")
+                    ContentUrl = new Uri(settings.OpenDataFeedBaseUrl + "facility-uses"),
+                    Identifier = "FacilityUse"
                 },
                 new DataDownload
                 {
-                    Name = "Slot",
+                    Name = "Slot for FacilityUse",
                     AdditionalType = new Uri("https://openactive.io/Slot"),
                     EncodingFormat = OpenActiveMediaTypes.RealtimePagedDataExchange.Version1,
-                    ContentUrl = new Uri(settings.OpenDataFeedBaseUrl + "slots")
+                    ContentUrl = new Uri(settings.OpenDataFeedBaseUrl + "slots"),
+                    Identifier = "FacilityUseSlot"
                 }
             },
             DatePublished = settings.DateFirstPublished,
