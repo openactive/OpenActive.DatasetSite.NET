@@ -967,7 +967,7 @@ namespace OpenActive.DatasetSite.NET
 
                 <h2 property=""dct:title"">{{name}}</h2>
 
-                <p class=""description"">{{description}}, published using <a href='https://www.openactive.io/'>OpenActive</a> <a href='https://www.openactive.io/realtime-paged-data-exchange/1.0/'>RPDE 1.0</a> and <a href='{{schemaVersion}}'>Model 2.0</a>.</p>
+                <p class=""description"">{{description}}, published using <a href='https://www.openactive.io/'>OpenActive</a> <a href='https://openactive.io/realtime-paged-data-exchange/1.0/'>RPDE 1.0</a> and <a href='{{schemaVersion}}'>Model 2.0</a>.</p>
                 <p class=""metadata"" property=""dct:description"">{{description}}.</p>
                 <p class=""metadata"" property=""dct:created"" content='{{datePublished}}' datatype='xsd:dateTime'></p>
                 {{#keywords}}
@@ -1008,7 +1008,7 @@ namespace OpenActive.DatasetSite.NET
                     </span>
                 </div>
                 <p></p>
-                <span class=""avatar""><a href=""https://www.openactive.io/""><img src=""https://www.openactive.io/assets/openactive-logo-small.png"" width=""100"" alt=""OpenActive"" /></a></span>
+                <span class=""avatar""><a href=""https://www.openactive.io/""><img src=""https://openactive.io/assets/openactive-logo-small.png"" width=""100"" alt=""OpenActive"" /></a></span>
             </footer>
         </section>
 

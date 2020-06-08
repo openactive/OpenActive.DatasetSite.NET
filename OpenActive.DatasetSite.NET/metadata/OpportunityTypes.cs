@@ -185,7 +185,8 @@ namespace OpenActive.DatasetSite.NET
                     Name = "OnDemandEvent",
                     SameAs = new Uri("https://schema.org/OnDemandEvent"),
                     DefaultFeedPath = "on-demand-event",
-                    Bookable = true
+                    Bookable = true,               
+                    ThemeDisplayName = "On Demand Events"
                 }
             }
         };

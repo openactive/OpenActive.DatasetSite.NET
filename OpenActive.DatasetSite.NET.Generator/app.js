@@ -1,5 +1,5 @@
 const DATA_MODEL_OUTPUT_DIR = "../OpenActive.DatasetSite.NET/metadata/";
-const DATASET_SITE_TEMPLATE_URL = "https://www.openactive.io/dataset-site-template/datasetsite.mustache";
+const DATASET_SITE_TEMPLATE_URL = "https://openactive.io/dataset-site-template/datasetsite.mustache";
 
 const { getModels, getEnums, getMetaData } = require('@openactive/data-models');
 var fs = require('fs');
