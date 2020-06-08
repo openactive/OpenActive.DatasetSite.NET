@@ -1,4 +1,4 @@
-﻿# OpenActive.DatasetSite.NET [![Nuget](https://img.shields.io/nuget/v/OpenActive.DatasetSite.NET.svg)](https://www.nuget.org/packages/OpenActive.DatasetSite.NET/)
+# OpenActive.DatasetSite.NET [![Nuget](https://img.shields.io/nuget/v/OpenActive.DatasetSite.NET.svg)](https://www.nuget.org/packages/OpenActive.DatasetSite.NET/)
 C# .NET helper functions supporting dataset site creation, to create something like [this example](https://opendata.fusion-lifestyle.com/OpenActive/) (or any of the other examples listed [here](http://status.openactive.io/)).
 
 This package intends to simplify creation of [OpenActive Dataset Sites](https://developer.openactive.io/publishing-data/dataset-sites) using templates.
@@ -159,29 +159,33 @@ public class DatasetSiteController : Controller
             {
                 Name = "SessionSeries",
                 AdditionalType = new Uri("https://openactive.io/SessionSeries"),
-                EncodingFormat = OpenActiveDiscovery.MediaTypes.Version1.RealtimePagedDataExchange.ToString(),
-                ContentUrl = new Uri(settings.OpenDataFeedBaseUrl + "session-series")
+                EncodingFormat = OpenActiveMediaTypes.RealtimePagedDataExchange.Version1,
+                ContentUrl = new Uri(settings.OpenDataFeedBaseUrl + "session-series"),
+                Identifier = "SessionSeries"
             },
             new DataDownload
             {
                 Name = "ScheduledSession",
                 AdditionalType = new Uri("https://openactive.io/ScheduledSession"),
-                EncodingFormat = OpenActiveDiscovery.MediaTypes.Version1.RealtimePagedDataExchange.ToString(),
-                ContentUrl = new Uri(settings.OpenDataFeedBaseUrl + "scheduled-sessions")
+                EncodingFormat = OpenActiveMediaTypes.RealtimePagedDataExchange.Version1,
+                ContentUrl = new Uri(settings.OpenDataFeedBaseUrl + "scheduled-sessions"),
+                Identifier = "ScheduledSession"
             },
             new DataDownload
             {
                 Name = "FacilityUse",
                 AdditionalType = new Uri("https://openactive.io/FacilityUse"),
-                EncodingFormat = OpenActiveDiscovery.MediaTypes.Version1.RealtimePagedDataExchange.ToString(),
-                ContentUrl = new Uri(settings.OpenDataFeedBaseUrl + "facility-uses")
+                EncodingFormat = OpenActiveMediaTypes.RealtimePagedDataExchange.Version1,
+                ContentUrl = new Uri(settings.OpenDataFeedBaseUrl + "facility-uses"),
+                Identifier = "FacilityUse"
             },
             new DataDownload
             {
-                Name = "Slot",
+                Name = "Slot for FacilityUse",
                 AdditionalType = new Uri("https://openactive.io/Slot"),
-                EncodingFormat = OpenActiveDiscovery.MediaTypes.Version1.RealtimePagedDataExchange.ToString(),
-                ContentUrl = new Uri(settings.OpenDataFeedBaseUrl + "slots")
+                EncodingFormat = OpenActiveMediaTypes.RealtimePagedDataExchange.Version1,
+                ContentUrl = new Uri(settings.OpenDataFeedBaseUrl + "slots"),
+                Identifier = "FacilityUseSlot"
             }
         };
 
@@ -274,29 +278,33 @@ public class DatasetSiteController : Controller
                 {
                     Name = "SessionSeries",
                     AdditionalType = new Uri("https://openactive.io/SessionSeries"),
-                    EncodingFormat = OpenActiveDiscovery.MediaTypes.Version1.RealtimePagedDataExchange.ToString(),
-                    ContentUrl = new Uri(settings.OpenDataFeedBaseUrl + "session-series")
+                    EncodingFormat = OpenActiveMediaTypes.RealtimePagedDataExchange.Version1,
+                    ContentUrl = new Uri(settings.OpenDataFeedBaseUrl + "session-series"),
+                    Identifier = "SessionSeries"
                 },
                 new DataDownload
                 {
                     Name = "ScheduledSession",
                     AdditionalType = new Uri("https://openactive.io/ScheduledSession"),
-                    EncodingFormat = OpenActiveDiscovery.MediaTypes.Version1.RealtimePagedDataExchange.ToString(),
-                    ContentUrl = new Uri(settings.OpenDataFeedBaseUrl + "scheduled-sessions")
+                    EncodingFormat = OpenActiveMediaTypes.RealtimePagedDataExchange.Version1,
+                    ContentUrl = new Uri(settings.OpenDataFeedBaseUrl + "scheduled-sessions"),
+                    Identifier = "ScheduledSession"
                 },
                 new DataDownload
                 {
                     Name = "FacilityUse",
                     AdditionalType = new Uri("https://openactive.io/FacilityUse"),
-                    EncodingFormat = OpenActiveDiscovery.MediaTypes.Version1.RealtimePagedDataExchange.ToString(),
-                    ContentUrl = new Uri(settings.OpenDataFeedBaseUrl + "facility-uses")
+                    EncodingFormat = OpenActiveMediaTypes.RealtimePagedDataExchange.Version1,
+                    ContentUrl = new Uri(settings.OpenDataFeedBaseUrl + "facility-uses"),
+                    Identifier = "FacilityUse"
                 },
                 new DataDownload
                 {
-                    Name = "Slot",
+                    Name = "Slot for FacilityUse",
                     AdditionalType = new Uri("https://openactive.io/Slot"),
-                    EncodingFormat = OpenActiveDiscovery.MediaTypes.Version1.RealtimePagedDataExchange.ToString(),
-                    ContentUrl = new Uri(settings.OpenDataFeedBaseUrl + "slots")
+                    EncodingFormat = OpenActiveMediaTypes.RealtimePagedDataExchange.Version1,
+                    ContentUrl = new Uri(settings.OpenDataFeedBaseUrl + "slots"),
+                    Identifier = "FacilityUseSlot"
                 }
             },
             DatePublished = settings.DateFirstPublished,
