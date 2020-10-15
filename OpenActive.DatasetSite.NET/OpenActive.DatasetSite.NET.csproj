@@ -12,7 +12,7 @@
     <PackageTags>OpenActive dataset site</PackageTags>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>3.4.0</Version>
+    <Version>4.0.0</Version>
     <Description>.NET library for rendering an OpenActive Dataset Site</Description>
   </PropertyGroup>
 

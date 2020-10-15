@@ -94,7 +94,7 @@ namespace OpenActive.DatasetSite.NET
                 DiscussionUrl = settings.DatasetDiscussionUrl,
                 Documentation = settings.DatasetDocumentationUrl ?? new Uri("https://developer.openactive.io/go/open-opportunity-data"),
                 InLanguage = settings.DatasetLanguages,
-                SchemaVersion = new Uri("https://www.openactive.io/modelling-opportunity-data/2.0/"),
+                SchemaVersion = new Uri("https://openactive.io/modelling-opportunity-data/2.0/"),
                 Publisher = new OpenActive.NET.Organization
                 {
                     Name = settings.OrganisationName,
@@ -126,7 +126,7 @@ namespace OpenActive.DatasetSite.NET
                     Documentation = settings.OpenBookingAPIDocumentationUrl ?? new Uri("https://developer.openactive.io/go/open-booking-api"),
                     TermsOfService = settings.OpenBookingAPITermsOfServiceUrl,
                     EndpointURL = settings.OpenBookingAPIBaseUrl,
-                    ConformsTo = new List<Uri> { new Uri("https://www.openactive.io/open-booking-api/EditorsDraft/") },
+                    ConformsTo = new List<Uri> { new Uri("https://openactive.io/open-booking-api/EditorsDraft/") },
                     EndpointDescription = new Uri("https://www.openactive.io/open-booking-api/EditorsDraft/swagger.json"),
                     LandingPage = settings.OpenBookingAPIRegistrationUrl
                 }

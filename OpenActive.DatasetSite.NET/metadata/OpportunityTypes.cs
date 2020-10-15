@@ -34,7 +34,7 @@ namespace OpenActive.DatasetSite.NET
                     Name = "SessionSeries",
                     SameAs = new Uri("https://openactive.io/SessionSeries"),               
                     Parent = OpportunityType.EventSeries,
-                    DefaultFeedPath = "session-series",
+                    DefaultFeedPath = "/session-series",
                     Bookable = false,               
                     ThemeDisplayName = "Sessions"
                 }
@@ -46,7 +46,7 @@ namespace OpenActive.DatasetSite.NET
                     Name = "ScheduledSession",
                     SameAs = new Uri("https://openactive.io/ScheduledSession"),               
                     Parent = OpportunityType.SessionSeries,
-                    DefaultFeedPath = "scheduled-sessions",
+                    DefaultFeedPath = "/scheduled-sessions",
                     Bookable = true,               
                     ThemeDisplayName = "Sessions"
                 }
@@ -57,7 +57,7 @@ namespace OpenActive.DatasetSite.NET
                     Identifier = "FacilityUse",
                     Name = "FacilityUse",
                     SameAs = new Uri("https://openactive.io/FacilityUse"),
-                    DefaultFeedPath = "facility-uses",
+                    DefaultFeedPath = "/facility-uses",
                     Bookable = false,               
                     ThemeDisplayName = "Facilities"
                 }
@@ -68,7 +68,7 @@ namespace OpenActive.DatasetSite.NET
                     Identifier = "IndividualFacilityUse",
                     Name = "IndividualFacilityUse",
                     SameAs = new Uri("https://openactive.io/IndividualFacilityUse"),
-                    DefaultFeedPath = "individual-facility-uses",
+                    DefaultFeedPath = "/individual-facility-uses",
                     Bookable = false,               
                     ThemeDisplayName = "Facilities"
                 }
@@ -80,7 +80,7 @@ namespace OpenActive.DatasetSite.NET
                     Name = "Slot for FacilityUse",
                     SameAs = new Uri("https://openactive.io/Slot"),               
                     Parent = OpportunityType.FacilityUse,
-                    DefaultFeedPath = "facility-use-slots",
+                    DefaultFeedPath = "/facility-use-slots",
                     Bookable = true,               
                     ThemeDisplayName = "Facilities"
                 }
@@ -92,7 +92,7 @@ namespace OpenActive.DatasetSite.NET
                     Name = "Slot for IndividualFacilityUse",
                     SameAs = new Uri("https://openactive.io/Slot"),               
                     Parent = OpportunityType.IndividualFacilityUse,
-                    DefaultFeedPath = "individual-facility-use-slots",
+                    DefaultFeedPath = "/individual-facility-use-slots",
                     Bookable = true,               
                     ThemeDisplayName = "Facilities"
                 }
@@ -103,7 +103,7 @@ namespace OpenActive.DatasetSite.NET
                     Identifier = "Course",
                     Name = "Course",
                     SameAs = new Uri("https://schema.org/Course"),
-                    DefaultFeedPath = "courses",
+                    DefaultFeedPath = "/courses",
                     Bookable = false,               
                     ThemeDisplayName = "Courses"
                 }
@@ -115,7 +115,7 @@ namespace OpenActive.DatasetSite.NET
                     Name = "CourseInstance",
                     SameAs = new Uri("https://schema.org/CourseInstance"),               
                     Parent = OpportunityType.Course,
-                    DefaultFeedPath = "course-instances",
+                    DefaultFeedPath = "/course-instances",
                     Bookable = true,               
                     ThemeDisplayName = "Courses"
                 }
@@ -127,7 +127,7 @@ namespace OpenActive.DatasetSite.NET
                     Name = "Event for CourseInstance",
                     SameAs = new Uri("https://schema.org/Event"),               
                     Parent = OpportunityType.CourseInstance,
-                    DefaultFeedPath = "course-instance-subevents",
+                    DefaultFeedPath = "/course-instance-subevents",
                     Bookable = true,               
                     ThemeDisplayName = "Courses"
                 }
@@ -139,7 +139,7 @@ namespace OpenActive.DatasetSite.NET
                     Name = "HeadlineEvent",
                     SameAs = new Uri("https://openactive.io/HeadlineEvent"),               
                     Parent = OpportunityType.EventSeries,
-                    DefaultFeedPath = "headline-events",
+                    DefaultFeedPath = "/headline-events",
                     Bookable = true,               
                     ThemeDisplayName = "Headline Events"
                 }
@@ -151,7 +151,7 @@ namespace OpenActive.DatasetSite.NET
                     Name = "Event for HeadlineEvent",
                     SameAs = new Uri("https://schema.org/Event"),               
                     Parent = OpportunityType.HeadlineEvent,
-                    DefaultFeedPath = "headline-event-subevents",
+                    DefaultFeedPath = "/headline-event-subevents",
                     Bookable = true,               
                     ThemeDisplayName = "Headline Events"
                 }
@@ -163,7 +163,7 @@ namespace OpenActive.DatasetSite.NET
                     Name = "Event",
                     SameAs = new Uri("https://schema.org/Event"),               
                     Parent = OpportunityType.EventSeries,
-                    DefaultFeedPath = "events",
+                    DefaultFeedPath = "/events",
                     Bookable = true,               
                     ThemeDisplayName = "Events"
                 }
@@ -174,7 +174,7 @@ namespace OpenActive.DatasetSite.NET
                     Identifier = "EventSeries",
                     Name = "EventSeries",
                     SameAs = new Uri("https://schema.org/EventSeries"),
-                    DefaultFeedPath = "event-series",
+                    DefaultFeedPath = "/event-series",
                     Bookable = false
                 }
             },
@@ -184,7 +184,7 @@ namespace OpenActive.DatasetSite.NET
                     Identifier = "OnDemandEvent",
                     Name = "OnDemandEvent",
                     SameAs = new Uri("https://schema.org/OnDemandEvent"),
-                    DefaultFeedPath = "on-demand-event",
+                    DefaultFeedPath = "/on-demand-event",
                     Bookable = true,               
                     ThemeDisplayName = "On Demand Events"
                 }
