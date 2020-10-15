@@ -72,6 +72,19 @@ namespace OpenActive.DatasetSite.NET
             if (dataDownloads == null) throw new ArgumentNullException(nameof(dataDownloads));
             if (dataFeedDescriptions == null) throw new ArgumentNullException(nameof(dataFeedDescriptions));
 
+            if (settings.OpenDataFeedBaseUrl == null)
+            {
+                throw new ArgumentNullException($"{nameof(settings.OpenDataFeedBaseUrl)} must not be null", nameof(settings));
+            }
+            if (settings.OpenDataFeedBaseUrl.ToString().EndsWith("/", System.StringComparison.InvariantCulture))
+            {
+                throw new ArgumentException($"{nameof(settings.OpenDataFeedBaseUrl)} must not contain a trailing /", nameof(settings));
+            }
+            if (settings.OpenBookingAPIBaseUrl?.ToString().EndsWith("/", System.StringComparison.InvariantCulture) == true)
+            {
+                throw new ArgumentException($"{nameof(settings.OpenBookingAPIBaseUrl)} must not contain a trailing /", nameof(settings));
+            }
+
             // Pre-process list of feed descriptions
             var dataFeedHumanisedList = dataFeedDescriptions.ToHumanisedList();
             var keywords = new List<string> {

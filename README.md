@@ -42,7 +42,7 @@ Returns a string corresponding to the compiled HTML, based on an embedded versio
 
 | Property                           | Type     | Description |
 | ---------------------------------- | -------- | ----------- |
-| `OpenDataFeedBaseUrl`              | `Uri`    | The base URL for the open data feeds |
+| `OpenDataFeedBaseUrl`              | `Uri`    | The base URL for the open data feeds (must not contain trailing `/`) |
 | `DatasetSiteUrl`                   | `Uri`    | The URL where this dataset site is displayed (the page's own URL) |
 | `DatasetDiscussionUrl`             | `Uri`    | The GitHub issues page for the dataset |
 | `DatasetDocumentationUrl`          | `Uri`    | Any documentation specific to the dataset. Defaults to https://developer.openactive.io/ if not provided, which should be used if no documentation is available. |
@@ -73,8 +73,8 @@ public class DatasetSiteController : Controller
         // Customer-specific settings for dataset JSON (these should come from a database)
         var settings = new DatasetSiteGeneratorSettings
         {
-            OpenDataFeedBaseUrl = "https://customer.example.com/feed/".ParseUrlOrNull(),
-            OpenBookingAPIBaseUrl = "https://customer.example.com/api/openbooking/".ParseUrlOrNull(),
+            OpenDataFeedBaseUrl = "https://customer.example.com/feed".ParseUrlOrNull(),
+            OpenBookingAPIBaseUrl = "https://customer.example.com/api/openbooking".ParseUrlOrNull(),
             DatasetSiteUrl = "https://halo-odi.legendonlineservices.co.uk/openactive/".ParseUrlOrNull(),
             DatasetDiscussionUrl = "https://github.com/gll-better/opendata".ParseUrlOrNull(),
             DatasetDocumentationUrl = "https://docs.acmebooker.example.com/".ParseUrlOrNull(),
@@ -134,8 +134,8 @@ public class DatasetSiteController : Controller
         // Customer-specific settings for dataset JSON (these should come from a database)
         var settings = new DatasetSiteGeneratorSettings
         {
-            OpenDataFeedBaseUrl = "https://customer.example.com/feed/".ParseUrlOrNull(),
-            OpenBookingAPIBaseUrl = "https://customer.example.com/api/openbooking/".ParseUrlOrNull(),
+            OpenDataFeedBaseUrl = "https://customer.example.com/feed".ParseUrlOrNull(),
+            OpenBookingAPIBaseUrl = "https://customer.example.com/api/openbooking".ParseUrlOrNull(),
             DatasetSiteUrl = "https://halo-odi.legendonlineservices.co.uk/openactive/".ParseUrlOrNull(),
             DatasetDiscussionUrl = "https://github.com/gll-better/opendata".ParseUrlOrNull(),
             DatasetDocumentationUrl = "https://docs.acmebooker.example.com/".ParseUrlOrNull(),
@@ -160,7 +160,7 @@ public class DatasetSiteController : Controller
                 Name = "SessionSeries",
                 AdditionalType = new Uri("https://openactive.io/SessionSeries"),
                 EncodingFormat = OpenActiveMediaTypes.RealtimePagedDataExchange.Version1,
-                ContentUrl = new Uri(settings.OpenDataFeedBaseUrl + "session-series"),
+                ContentUrl = new Uri(settings.OpenDataFeedBaseUrl + "/session-series"),
                 Identifier = "SessionSeries"
             },
             new DataDownload
@@ -168,7 +168,7 @@ public class DatasetSiteController : Controller
                 Name = "ScheduledSession",
                 AdditionalType = new Uri("https://openactive.io/ScheduledSession"),
                 EncodingFormat = OpenActiveMediaTypes.RealtimePagedDataExchange.Version1,
-                ContentUrl = new Uri(settings.OpenDataFeedBaseUrl + "scheduled-sessions"),
+                ContentUrl = new Uri(settings.OpenDataFeedBaseUrl + "/scheduled-sessions"),
                 Identifier = "ScheduledSession"
             },
             new DataDownload
@@ -176,7 +176,7 @@ public class DatasetSiteController : Controller
                 Name = "FacilityUse",
                 AdditionalType = new Uri("https://openactive.io/FacilityUse"),
                 EncodingFormat = OpenActiveMediaTypes.RealtimePagedDataExchange.Version1,
-                ContentUrl = new Uri(settings.OpenDataFeedBaseUrl + "facility-uses"),
+                ContentUrl = new Uri(settings.OpenDataFeedBaseUrl + "/facility-uses"),
                 Identifier = "FacilityUse"
             },
             new DataDownload
@@ -184,7 +184,7 @@ public class DatasetSiteController : Controller
                 Name = "Slot for FacilityUse",
                 AdditionalType = new Uri("https://openactive.io/Slot"),
                 EncodingFormat = OpenActiveMediaTypes.RealtimePagedDataExchange.Version1,
-                ContentUrl = new Uri(settings.OpenDataFeedBaseUrl + "slots"),
+                ContentUrl = new Uri(settings.OpenDataFeedBaseUrl + "/slots"),
                 Identifier = "FacilityUseSlot"
             }
         };
@@ -220,8 +220,8 @@ public class DatasetSiteController : Controller
         // Customer-specific settings for dataset JSON (these should come from a database)
         var settings = new DatasetSiteGeneratorSettings
         {
-            OpenDataFeedBaseUrl = "https://customer.example.com/feed/".ParseUrlOrNull(),
-            OpenBookingAPIBaseUrl = "https://customer.example.com/api/openbooking/".ParseUrlOrNull(),
+            OpenDataFeedBaseUrl = "https://customer.example.com/feed".ParseUrlOrNull(),
+            OpenBookingAPIBaseUrl = "https://customer.example.com/api/openbooking".ParseUrlOrNull(),
             DatasetSiteUrl = "https://halo-odi.legendonlineservices.co.uk/openactive/".ParseUrlOrNull(),
             DatasetDiscussionUrl = "https://github.com/gll-better/opendata".ParseUrlOrNull(),
             DatasetDocumentationUrl = "https://docs.acmebooker.example.com/".ParseUrlOrNull(),
@@ -279,7 +279,7 @@ public class DatasetSiteController : Controller
                     Name = "SessionSeries",
                     AdditionalType = new Uri("https://openactive.io/SessionSeries"),
                     EncodingFormat = OpenActiveMediaTypes.RealtimePagedDataExchange.Version1,
-                    ContentUrl = new Uri(settings.OpenDataFeedBaseUrl + "session-series"),
+                    ContentUrl = new Uri(settings.OpenDataFeedBaseUrl + "/session-series"),
                     Identifier = "SessionSeries"
                 },
                 new DataDownload
@@ -287,7 +287,7 @@ public class DatasetSiteController : Controller
                     Name = "ScheduledSession",
                     AdditionalType = new Uri("https://openactive.io/ScheduledSession"),
                     EncodingFormat = OpenActiveMediaTypes.RealtimePagedDataExchange.Version1,
-                    ContentUrl = new Uri(settings.OpenDataFeedBaseUrl + "scheduled-sessions"),
+                    ContentUrl = new Uri(settings.OpenDataFeedBaseUrl + "/scheduled-sessions"),
                     Identifier = "ScheduledSession"
                 },
                 new DataDownload
@@ -295,7 +295,7 @@ public class DatasetSiteController : Controller
                     Name = "FacilityUse",
                     AdditionalType = new Uri("https://openactive.io/FacilityUse"),
                     EncodingFormat = OpenActiveMediaTypes.RealtimePagedDataExchange.Version1,
-                    ContentUrl = new Uri(settings.OpenDataFeedBaseUrl + "facility-uses"),
+                    ContentUrl = new Uri(settings.OpenDataFeedBaseUrl + "/facility-uses"),
                     Identifier = "FacilityUse"
                 },
                 new DataDownload
@@ -303,7 +303,7 @@ public class DatasetSiteController : Controller
                     Name = "Slot for FacilityUse",
                     AdditionalType = new Uri("https://openactive.io/Slot"),
                     EncodingFormat = OpenActiveMediaTypes.RealtimePagedDataExchange.Version1,
-                    ContentUrl = new Uri(settings.OpenDataFeedBaseUrl + "slots"),
+                    ContentUrl = new Uri(settings.OpenDataFeedBaseUrl + "/slots"),
                     Identifier = "FacilityUseSlot"
                 }
             },
