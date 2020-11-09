@@ -95,20 +95,23 @@ namespace OpenActive.DatasetSite.NET
         public Uri OpenBookingAPIBaseUrl { get; set; }
 
         /// <summary>
-        /// The the base URL for the Open Booking API.
+        /// The documentation URL for the Open Booking API.
         /// </summary>
         public Uri OpenBookingAPIDocumentationUrl { get; set; }
 
         /// <summary>
-        /// The the base URL for the Open Booking API.
+        /// The terms of service URL for the Open Booking API.
         /// </summary>
         public Uri OpenBookingAPITermsOfServiceUrl { get; set; }
 
         /// <summary>
-        /// The the base URL for the Open Booking API.
+        /// The registration URL for the Open Booking API.
         /// </summary>
         public Uri OpenBookingAPIRegistrationUrl { get; set; }
 
-
+        /// <summary>
+        /// The Issuer URL of the OpenID Provider used to access the Open Booking API
+        /// </summary>
+        public Uri OpenBookingAPIAuthenticationAuthority { get; set; }
     }
 }
