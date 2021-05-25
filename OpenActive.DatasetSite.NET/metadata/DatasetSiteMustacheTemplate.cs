@@ -1008,7 +1008,7 @@ namespace OpenActive.DatasetSite.NET
                     </span>
                 </div>
                 <p></p>
-                <span class=""avatar""><a href=""https://www.openactive.io/""><img src=""https://openactive.io/assets/openactive-logo-small.png"" width=""100"" alt=""OpenActive"" /></a></span>
+                <span class=""avatar""><a href=""https://www.openactive.io/""><img src=""https://openactive.io/brand-assets/openactive-logo-small.png"" width=""100"" alt=""OpenActive"" /></a></span>
             </footer>
         </section>
 
