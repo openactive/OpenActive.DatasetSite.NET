@@ -23,9 +23,9 @@ namespace OpenActive.DatasetSite.NET.Tests
             // Customer-specific settings for dataset JSON (these should come from a database)
             var settings = new DatasetSiteGeneratorSettings
             {
-                OpenDataFeedBaseUrl = "https://customer.example.com/feed/".ParseUrlOrNull(),
-                OpenBookingAPIBaseUrl = "https://customer.example.com/api/openbooking/".ParseUrlOrNull(),
-                OpenBookingAPIAuthenticationAuthority = "https://auth.acmebooker.example.com/".ParseUrlOrNull(),
+                OpenDataFeedBaseUrl = "https://customer.example.com/feed".ParseUrlOrNull(),
+                OpenBookingAPIBaseUrl = "https://customer.example.com/api/openbooking".ParseUrlOrNull(),
+                OpenBookingAPIAuthenticationAuthority = "https://auth.acmebooker.example.com".ParseUrlOrNull(),
                 DatasetSiteUrl = "https://halo-odi.legendonlineservices.co.uk/openactive/".ParseUrlOrNull(),
                 DatasetDiscussionUrl = "https://github.com/gll-better/opendata".ParseUrlOrNull(),
                 DatasetDocumentationUrl = "https://docs.acmebooker.example.com/".ParseUrlOrNull(),

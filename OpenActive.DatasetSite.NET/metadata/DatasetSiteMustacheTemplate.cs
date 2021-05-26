@@ -957,6 +957,10 @@ namespace OpenActive.DatasetSite.NET
         <!-- Main -->
         <section id=""main"">
             <header>
+                {{#disambiguatingDescription}}
+                <p class=""warning"">{{.}}</p>
+                {{/disambiguatingDescription}}
+                
                 <div>
                     <a href=""{{publisher.url}}"" about=""{{publisher.url}}"" property=""foaf:homepage"">
                         <span class=""avatar"" property=""foaf:name"" content=""{{publisher.name}}""><img class=""logo"" src=""{{publisher.logo.url}}"" alt="""" /></span>
