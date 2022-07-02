@@ -3,7 +3,7 @@ name: Update Data Model and Template
 on:
   workflow_dispatch:
   repository_dispatch:
-    types: [OpenActive.NET-update,dataset-site-template-update]
+    types: [OpenActive.NET-update,data-models-update,dataset-site-template-update]
 
 jobs:
   generate:
