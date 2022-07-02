@@ -1,14 +1,14 @@
-const DATA_MODEL_OUTPUT_DIR = "../OpenActive.DatasetSite.NET/metadata/";
-const DATASET_SITE_TEMPLATE_URL = "https://openactive.io/dataset-site-template/datasetsite.mustache";
-
-const { getModels, getEnums, getMetaData } = require('@openactive/data-models');
 var fs = require('fs');
 var fsExtra = require('fs-extra');
 var request = require('sync-request');
 var path = require('path');
+const { getModels, getEnums, getMetaData } = require('@openactive/data-models');
+const { getDatasetSiteTemplateSync } = require('@openactive/dataset-site-template');
+
+const DATA_MODEL_OUTPUT_DIR = "../OpenActive.DatasetSite.NET/metadata/";
 
 removeFiles()
-generateDatasetSiteMustacheTemplate(DATASET_SITE_TEMPLATE_URL);
+generateDatasetSiteMustacheTemplate();
 generateOpportunityTypes();
 
 function removeFiles() {
@@ -17,10 +17,8 @@ function removeFiles() {
 }
 
 function generateDatasetSiteMustacheTemplate (datasetSiteTemplateUrl) {
-    var content = getContentFromUrl(datasetSiteTemplateUrl);
-    if (content) {
-        writeFile('DatasetSiteMustacheTemplate', renderMustacheTemplateFile(content));
-    }
+    var template = getDatasetSiteTemplateSync(true);
+    writeFile('DatasetSiteMustacheTemplate', renderMustacheTemplateFile(template));
 }
 
 function renderMustacheTemplateFile(content) {
@@ -80,16 +78,6 @@ namespace OpenActive.DatasetSite.NET
     }
 }
 `
-}
-
-
-function getContentFromUrl(url) {
-    var response = request('GET', url, { accept: 'text/html' });
-    if (response && response.statusCode == 200) {
-        return response.getBody('utf8');
-    } else {
-        return undefined;
-    }
 }
 
 function writeFile(name, content) {
