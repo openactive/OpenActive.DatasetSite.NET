@@ -176,8 +176,8 @@ namespace OpenActive.DatasetSite.NET
             JObject jsonObj = JObject.Parse(jsonString);
 
             // Stringify the input JSON using formatting, and place the contents of the string
-            // within the "json" property at the root of the JSON itself.
-            jsonObj.Add("json", jsonObj.ToString(Formatting.Indented));
+            // within the "jsonld" property at the root of the JSON itself.
+            jsonObj.Add("jsonld", jsonObj.ToString(Formatting.Indented));
 
             //Use the resulting JSON with the mustache template to render the dataset site.
             var stubble = new StubbleBuilder().Configure(s => s.AddJsonNet()).Build();
