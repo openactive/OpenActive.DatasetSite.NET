@@ -20,7 +20,8 @@ namespace OpenActive.DatasetSite.NET
         HeadlineEventSubEvent,
         Event,
         EventSeries,
-        OnDemandEvent
+        OnDemandEvent,
+        Place
     }
 
     public static class OpportunityTypes
@@ -184,9 +185,20 @@ namespace OpenActive.DatasetSite.NET
                     Identifier = "OnDemandEvent",
                     Name = "OnDemandEvent",
                     SameAs = new Uri("https://schema.org/OnDemandEvent"),
-                    DefaultFeedPath = "/on-demand-event",
+                    DefaultFeedPath = "/on-demand-events",
                     Bookable = true,               
                     ThemeDisplayName = "On Demand Events"
+                }
+            },
+            {
+                OpportunityType.Place,
+                new OpportunityTypeConfiguration {
+                    Identifier = "Place",
+                    Name = "Place",
+                    SameAs = new Uri("https://schema.org/Place"),
+                    DefaultFeedPath = "/places",
+                    Bookable = false,               
+                    ThemeDisplayName = "Places"
                 }
             }
         };
