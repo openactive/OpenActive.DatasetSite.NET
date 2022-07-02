@@ -1,0 +1,56 @@
+name: Tested and Published on NuGet
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout OpenActive.DatasetSite.NET
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # avoid shallow clone so nbgv can do its work.
+
+      - name: Get current version
+        uses: dotnet/nbgv@master
+        id: nbgv
+
+      - name: Setup .NET Core 3.1.x
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 3.1.x
+
+      - name: Install dependencies
+        run: dotnet restore
+        
+      - name: Test
+        run: dotnet test ./OpenActive.DatasetSite.NET.Tests/OpenActive.DatasetSite.NET.Tests.csproj --configuration Release --no-restore --verbosity normal
+        
+      - name: Build
+        run: dotnet build ./OpenActive.DatasetSite.NET/OpenActive.DatasetSite.NET.csproj --configuration Release --no-restore
+        
+      - name: Pack
+        run: dotnet pack  ./OpenActive.DatasetSite.NET/OpenActive.DatasetSite.NET.csproj  --configuration Release --include-source --no-build -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg
+        
+      - name: Push to Nuget
+        if: "! contains(toJSON(github.event.commits.*.message), '[no-release]')"
+        run: dotnet nuget push "./OpenActive.DatasetSite.NET/**/*.nupkg" -k ${{secrets.NUGET_API_KEY}} --skip-duplicate -s https://api.nuget.org/v3/index.json
+        
+      - name: Create Release
+        if: "! contains(toJSON(github.event.commits.*.message), '[no-release]')"
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ steps.nbgv.outputs.SimpleVersion }}
+          release_name: Release ${{ steps.nbgv.outputs.SimpleVersion }}
+          body: |
+            This release contains minor amendments based on updates to the [OpenActive Vocabulary](https://openactive.io/ns/) (codified by the [Data Models](https://github.com/openactive/data-models)), and the latest version of the [Dataset Site Template](https://github.com/openactive/dataset-site-template).
+            
+            Published to [Nuget](https://www.nuget.org/packages/OpenActive.DatasetSite.NET/${{ steps.nbgv.outputs.SimpleVersion }}).
+          draft: false
+          prerelease: false
