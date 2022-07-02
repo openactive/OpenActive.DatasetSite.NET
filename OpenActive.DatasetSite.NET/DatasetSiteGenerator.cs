@@ -130,7 +130,8 @@ namespace OpenActive.DatasetSite.NET
                 {
                     Name = settings.PlatformName,
                     Url = settings.PlatformUrl,
-                    SoftwareVersion = settings.PlatformVersion
+                    SoftwareVersion = settings.PlatformVersion,
+                    HasCredential = settings.TestSuiteCertificateUrl
                 },
                 AccessService = settings.OpenBookingAPIBaseUrl == null ? null : new WebAPI
                 {

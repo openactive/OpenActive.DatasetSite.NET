@@ -113,5 +113,10 @@ namespace OpenActive.DatasetSite.NET
         /// The Issuer URL of the OpenID Provider used to access the Open Booking API
         /// </summary>
         public Uri OpenBookingAPIAuthenticationAuthority { get; set; }
+
+        /// <summary>
+        /// The publicly accessible URL of an up-to-date OpenActive Test Suite Certificate for the implementation 
+        /// </summary>
+        public Uri TestSuiteCertificateUrl { get; set; }
     }
 }
