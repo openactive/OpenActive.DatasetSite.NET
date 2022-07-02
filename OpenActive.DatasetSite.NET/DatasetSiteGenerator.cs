@@ -138,7 +138,7 @@ namespace OpenActive.DatasetSite.NET
                     Description = $"API that allows for seamless booking experiences to be created for {dataFeedHumanisedList.ToLowerInvariant()} available from {settings.OrganisationName}",
                     Documentation = settings.OpenBookingAPIDocumentationUrl ?? new Uri("https://developer.openactive.io/go/open-booking-api"),
                     TermsOfService = settings.OpenBookingAPITermsOfServiceUrl,
-                    EndpointURL = settings.OpenBookingAPIBaseUrl,
+                    EndpointUrl = settings.OpenBookingAPIBaseUrl,
                     AuthenticationAuthority = settings.OpenBookingAPIAuthenticationAuthority,
                     ConformsTo = new List<Uri> { new Uri("https://openactive.io/open-booking-api/EditorsDraft/") },
                     EndpointDescription = new Uri("https://www.openactive.io/open-booking-api/EditorsDraft/swagger.json"),
