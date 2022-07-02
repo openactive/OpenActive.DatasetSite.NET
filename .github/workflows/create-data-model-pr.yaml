@@ -36,7 +36,7 @@ jobs:
         id: cpr
         uses: peter-evans/create-pull-request@v3
         with:
-          path: ./OpenActive.DatasetSite.NET/
+          path: .
           token: ${{ secrets.PUBLIC_REPO_ACCESS_TOKEN }}
           commit-message: Update data models and dataset site template
           committer: openactive-bot <openactive-bot@users.noreply.github.com>
