@@ -40,6 +40,10 @@ jobs:
       - name: Update OpenActive.NET to latest version
         run: dotnet add package OpenActive.NET
         working-directory: ./OpenActive.DatasetSite.NET/
+        
+      - name: Do not commit version bumps of the generator
+        run: git checkout package.json package-lock.json
+        working-directory: ./OpenActive.DatasetSite.NET.Generator/
       
       - name: Create Pull Request
         id: cpr
