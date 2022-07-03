@@ -42,7 +42,7 @@ jobs:
         working-directory: ./OpenActive.DatasetSite.NET/
         
       - name: Do not commit version bumps of the generator unless something else has been updated
-        run:
+        run: |
           git stash push package.json package-lock.json
           if [ -z "$(git status --porcelain)" ]; then echo "No changes"; else git stash apply; fi
         working-directory: ./OpenActive.DatasetSite.NET.Generator/
