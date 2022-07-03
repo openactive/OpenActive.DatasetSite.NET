@@ -42,7 +42,7 @@ jobs:
         working-directory: ./OpenActive.DatasetSite.NET/
         
       - name: git stash if material changes have not been made
-        run: if [ "$(git diff --numstat | grep -vc '^1.*DatasetSiteMustacheTemplate.cs\|.*package\.json\|.*package-lock\.json$')" -eq "0" ]; then git stash apply; else echo "Material changes found"; fi
+        run: if [ "$(git diff --numstat | grep -vc '^1.*DatasetSiteMustacheTemplate.cs\|.*package\.json\|.*package-lock\.json$')" -eq "0" ]; then git stash; else echo "Material changes found"; fi
         working-directory: ./
 
       - name: Create Pull Request
