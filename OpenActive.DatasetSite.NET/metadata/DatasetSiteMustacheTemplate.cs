@@ -6,6 +6,9 @@ namespace OpenActive.DatasetSite.NET
         public const string Content = @"
 <!DOCTYPE HTML>
 <!--
+  OpenActive Dataset Site Template version 1.0.12, from https://unpkg.com/@openactive/dataset-site-template@1.0.12/dist/datasetsite.mustache
+-->
+<!--
   Design: Identity by HTML5 UP
   html5up.net | @ajlkn
   Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
@@ -40,6 +43,11 @@ namespace OpenActive.DatasetSite.NET
     <meta charset=""utf-8"" />
     <meta name=""viewport"" content=""width=device-width, initial-scale=1"" />
     
+    <!-- JSON-LD conforming to Google Structured Data specification. -->
+    <script type=""application/ld+json"">
+{{{jsonld}}}
+    </script>
+    
     <link rel=""stylesheet"" href=""https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,600"" crossorigin=""anonymous"">
     <style>
 /*
@@ -47,8 +55,6 @@ namespace OpenActive.DatasetSite.NET
     html5up.net | @ajlkn
     Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
-
-
 
 /*
 Font Awesome 4.7.0
@@ -1167,7 +1173,7 @@ body {
 
         }
 
-.metadata {
+.metadata, .always-hidden {
     display: none;
 }
 
@@ -1210,11 +1216,6 @@ body {
     opacity: 1;
 }
 </style>
-
-    <!-- JSON-LD conforming to Google Structured Data specification. -->
-    <script type=""application/ld+json"">
-{{{jsonld}}}
-    </script>
 </head>
 <body id=""booking"" background=""{{backgroundImage.url}}"">
     <div class=""outerscene"">
