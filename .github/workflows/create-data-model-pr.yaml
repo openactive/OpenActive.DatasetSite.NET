@@ -41,11 +41,9 @@ jobs:
         run: dotnet add package OpenActive.NET
         working-directory: ./OpenActive.DatasetSite.NET/
         
-      - name: Do not commit version bumps of the generator unless something else has been updated
-        run: |
-          git stash push package.json package-lock.json
-          if [ -z "$(git status --porcelain)" ]; then echo "No changes"; else git stash apply; fi
-        working-directory: ./OpenActive.DatasetSite.NET.Generator/
+      - name: git stash if material changes have not been made
+        run: if [ "$(git diff --numstat | grep -vc '^1.*DatasetSiteMustacheTemplate.cs\|.*package\.json\|.*package-lock\.json$')" -eq "0" ]; then git stash apply; else echo "Material changes found"; fi
+        working-directory: ./
 
       - name: Create Pull Request
         id: cpr
