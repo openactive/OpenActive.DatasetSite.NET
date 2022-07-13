@@ -6,7 +6,7 @@ namespace OpenActive.DatasetSite.NET
         public const string Content = @"
 <!DOCTYPE HTML>
 <!--
-  OpenActive Dataset Site Template version 1.0.12, from https://unpkg.com/@openactive/dataset-site-template@1.0.12/dist/datasetsite.mustache
+  OpenActive Dataset Site Template version 1.0.16, from https://unpkg.com/@openactive/dataset-site-template@1.0.16/dist/datasetsite.mustache
 -->
 <!--
   Design: Identity by HTML5 UP
