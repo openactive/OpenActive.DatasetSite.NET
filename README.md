@@ -40,26 +40,30 @@ Returns a string corresponding to the compiled HTML, based on an embedded versio
 
 #### DatasetSiteGeneratorSettings
 
-| Property                           | Type     | Description |
-| ---------------------------------- | -------- | ----------- |
-| `OpenDataFeedBaseUrl`              | `Uri`    | The base URL for the open data feeds (must not contain trailing `/`) |
-| `DatasetSiteUrl`                   | `Uri`    | The URL where this dataset site is displayed (the page's own URL) |
-| `DatasetDiscussionUrl`             | `Uri`    | The GitHub issues page for the dataset |
-| `DatasetDocumentationUrl`          | `Uri`    | Any documentation specific to the dataset. Defaults to https://developer.openactive.io/ if not provided, which should be used if no documentation is available. |
-| `DatasetLanguages`           | `List<string>` | The languages available in the dataset, following the IETF BCP 47 standard. Defaults to 'en-GB'. |
-| `OrganisationName`                 | `string` | The publishing organisation's name |
-| `OrganisationUrl`                  | `Uri`    | The publishing organisation's URL |
-| `OrganisationLegalEntity`          | `string` | The legal name of the publishing organisation of this dataset |
-| `OrganisationPlainTextDescription` | `string` | A plain text description of this organisation |
-| `OrganisationLogoUrl`              | `Uri`    | An image URL of the publishing organisation's logo, ideally in PNG format |
-| `OrganisationEmail`                | `string` | The contact email of the publishing organisation of this dataset |
-| `PlatformName`                     | `string` | The software platform's name. Only set this if different from the publishing organisation, otherwise leave as null to exclude platform metadata. |
-| `PlatformUrl`                      | `Uri`    | The software platform's website |
-| `PlatformSoftwareVersion`          | `string` | The software platform's software version |
-| `BackgroundImageUrl`               | `Uri`    | The background image to show on the Dataset Site page |
-| `DateFirstPublished`               | `DateTimeOffset` | The date the dataset was first published |
-
-
+| Property                                   | Type     | Description |
+| -------------------------------------------| -------- | ----------- |
+| `OpenDataFeedBaseUrl`                      | `Uri`    | The base URL for the open data feeds (must not contain trailing `/`) |
+| `DatasetSiteUrl`                           | `Uri`    | The URL where this dataset site is displayed (the page's own URL) |
+| `DatasetDiscussionUrl`                     | `Uri`    | The GitHub issues page for the dataset |
+| `DatasetDocumentationUrl`                  | `Uri`    | Any documentation specific to the dataset. Defaults to https://developer.openactive.io/ if not provided, which should be used if no documentation is available         . |
+| `DatasetLanguages`                         | `List<string>` | The languages available in the dataset, following the IETF BCP 47 standard. Defaults to 'en-GB'. |
+| `OrganisationName`                         | `string` | The publishing organisation's name |
+| `OrganisationUrl`                          | `Uri`    | The publishing organisation's URL |
+| `OrganisationLegalEntity`                  | `string` | The legal name of the publishing organisation of this dataset |
+| `OrganisationPlainTextDescription`         | `string` | A plain text description of this organisation |
+| `OrganisationLogoUrl`                      | `Uri`    | An image URL of the publishing organisation's logo, ideally in PNG format |
+| `OrganisationEmail`                        | `string` | The contact email of the publishing organisation of this dataset |
+| `PlatformName`                             | `string` | The software platform's name. Only set this if different from the publishing organisation, otherwise leave as null to exclude platform metadata. |         
+| `PlatformUrl`                              | `Uri`    | The software platform's website |
+| `PlatformSoftwareVersion`                  | `string` | The software platform's software version |
+| `BackgroundImageUrl`                       | `Uri`    | The background image to show on the Dataset Site page |
+| `DateFirstPublished`                       | `DateTimeOffset` | The date the dataset was first published |
+| `OpenBookingAPIBaseUrl`                    | `Uri`      | The Base URI of this implementation of the Open Booking API |
+| `OpenBookingAPIAuthenticationAuthorityUrl` | `Uri`      | The location of the OpenID Provider that must be used to access the API |
+| `OpenBookingAPIDocumentationUrl`           | `Uri`      | The URL of documentation related to how to use the Open Booking API. Defaults to https://developer.openactive.io/go/open-booking-api if not provided, which should be use if no documentation is available. |
+| `OpenBookingAPITermsOfServiceUrl`          | `Uri`      | The URL of terms of service related to the use of this API |
+| `OpenBookingAPIRegistrationUrl`            | `Uri`      | The URL of a web page that the Broker may use to obtain access to the API, e.g. via a web form |
+| `TestSuiteCertificateUrl`                  | `Uri`      | The URL of the OpenActive Test Suite certificate for this booking system |
 
 #### Example
 
@@ -74,8 +78,6 @@ public class DatasetSiteController : Controller
         var settings = new DatasetSiteGeneratorSettings
         {
             OpenDataFeedBaseUrl = "https://customer.example.com/feed".ParseUrlOrNull(),
-            OpenBookingAPIBaseUrl = "https://customer.example.com/api/openbooking".ParseUrlOrNull(),
-            OpenBookingAPIAuthenticationAuthority = "https://auth.acmebooker.example.com/".ParseUrlOrNull(),
             DatasetSiteUrl = "https://halo-odi.legendonlineservices.co.uk/openactive/".ParseUrlOrNull(),
             DatasetDiscussionUrl = "https://github.com/gll-better/opendata".ParseUrlOrNull(),
             DatasetDocumentationUrl = "https://docs.acmebooker.example.com/".ParseUrlOrNull(),
@@ -90,7 +92,13 @@ public class DatasetSiteController : Controller
             PlatformUrl = "https://acmebooker.example.com/".ParseUrlOrNull(),
             PlatformVersion = "2.0",
             BackgroundImageUrl = "https://data.better.org.uk/images/bg.jpg".ParseUrlOrNull(),
-            DateFirstPublished = new DateTimeOffset(new DateTime(2019, 01, 14))
+            DateFirstPublished = new DateTimeOffset(new DateTime(2019, 01, 14)),
+            OpenBookingAPIBaseUrl = "https://reference-implementation.openactive.io/api/openbooking".ParseUrlOrNull(),
+            OpenBookingAPIAuthenticationAuthorityUrl = "https://auth.reference-implementation.openactive.io".ParseUrlOrNull(),
+            OpenBookingAPIDocumentationUrl = "https://developer.openactive.io/go/open-booking-api".ParseUrlOrNull(),
+            OpenBookingAPITermsOfServiceUrl = "https://example.com/api-terms-page".ParseUrlOrNull(),
+            OpenBookingAPIRegistrationUrl = "https://example.com/api-landing-page".ParseUrlOrNull(),
+            TestSuiteCertificateUrl = "https://certificates.reference-implementation.openactive.io/examples/all-features/controlled/".ParseUrlOrNull()
         };
 
         var supportedFeeds = new List<OpportunityType> {
@@ -136,8 +144,6 @@ public class DatasetSiteController : Controller
         var settings = new DatasetSiteGeneratorSettings
         {
             OpenDataFeedBaseUrl = "https://customer.example.com/feed".ParseUrlOrNull(),
-            OpenBookingAPIBaseUrl = "https://customer.example.com/api/openbooking".ParseUrlOrNull(),
-            OpenBookingAPIAuthenticationAuthority = "https://auth.acmebooker.example.com/".ParseUrlOrNull(),
             DatasetSiteUrl = "https://halo-odi.legendonlineservices.co.uk/openactive/".ParseUrlOrNull(),
             DatasetDiscussionUrl = "https://github.com/gll-better/opendata".ParseUrlOrNull(),
             DatasetDocumentationUrl = "https://docs.acmebooker.example.com/".ParseUrlOrNull(),
@@ -152,7 +158,13 @@ public class DatasetSiteController : Controller
             PlatformUrl = "https://acmebooker.example.com/".ParseUrlOrNull(),
             PlatformVersion = "2.0",
             BackgroundImageUrl = "https://data.better.org.uk/images/bg.jpg".ParseUrlOrNull(),
-            DateFirstPublished = new DateTimeOffset(new DateTime(2019, 01, 14))
+            DateFirstPublished = new DateTimeOffset(new DateTime(2019, 01, 14)),
+            OpenBookingAPIBaseUrl = "https://reference-implementation.openactive.io/api/openbooking".ParseUrlOrNull(),
+            OpenBookingAPIAuthenticationAuthorityUrl = "https://auth.reference-implementation.openactive.io".ParseUrlOrNull(),
+            OpenBookingAPIDocumentationUrl = "https://developer.openactive.io/go/open-booking-api".ParseUrlOrNull(),
+            OpenBookingAPITermsOfServiceUrl = "https://example.com/api-terms-page".ParseUrlOrNull(),
+            OpenBookingAPIRegistrationUrl = "https://example.com/api-landing-page".ParseUrlOrNull(),
+            TestSuiteCertificateUrl = "https://certificates.reference-implementation.openactive.io/examples/all-features/controlled/".ParseUrlOrNull()
         };
 
         var dataDownloads = new List<DataDownload>
@@ -223,8 +235,6 @@ public class DatasetSiteController : Controller
         var settings = new DatasetSiteGeneratorSettings
         {
             OpenDataFeedBaseUrl = "https://customer.example.com/feed".ParseUrlOrNull(),
-            OpenBookingAPIBaseUrl = "https://customer.example.com/api/openbooking".ParseUrlOrNull(),
-            OpenBookingAPIAuthenticationAuthority = "https://auth.acmebooker.example.com/".ParseUrlOrNull(),
             DatasetSiteUrl = "https://halo-odi.legendonlineservices.co.uk/openactive/".ParseUrlOrNull(),
             DatasetDiscussionUrl = "https://github.com/gll-better/opendata".ParseUrlOrNull(),
             DatasetDocumentationUrl = "https://docs.acmebooker.example.com/".ParseUrlOrNull(),
@@ -239,7 +249,13 @@ public class DatasetSiteController : Controller
             PlatformUrl = "https://acmebooker.example.com/".ParseUrlOrNull(),
             PlatformVersion = "2.0",
             BackgroundImageUrl = "https://data.better.org.uk/images/bg.jpg".ParseUrlOrNull(),
-            DateFirstPublished = new DateTimeOffset(new DateTime(2019, 01, 14))
+            DateFirstPublished = new DateTimeOffset(new DateTime(2019, 01, 14)),
+            OpenBookingAPIBaseUrl = "https://reference-implementation.openactive.io/api/openbooking".ParseUrlOrNull(),
+            OpenBookingAPIAuthenticationAuthorityUrl = "https://auth.reference-implementation.openactive.io".ParseUrlOrNull(),
+            OpenBookingAPIDocumentationUrl = "https://developer.openactive.io/go/open-booking-api".ParseUrlOrNull(),
+            OpenBookingAPITermsOfServiceUrl = "https://example.com/api-terms-page".ParseUrlOrNull(),
+            OpenBookingAPIRegistrationUrl = "https://example.com/api-landing-page".ParseUrlOrNull(),
+            TestSuiteCertificateUrl = "https://certificates.reference-implementation.openactive.io/examples/all-features/controlled/".ParseUrlOrNull()
         };
 
         var dataFeedHumanisedList = "Sessions and Facilities";
@@ -320,7 +336,20 @@ public class DatasetSiteController : Controller
             {
                 Name = settings.PlatformName,
                 Url = settings.PlatformUrl,
-                SoftwareVersion = settings.PlatformVersion
+                SoftwareVersion = settings.PlatformVersion,
+                HasCredential = settings.TestSuiteCertificateUrl
+            },
+            AccessService = settings.OpenBookingAPIBaseUrl == null ? null : new WebAPI
+            {
+                Name = "Open Booking API",
+                Description = $"API that allows for seamless booking experiences to be created for {dataFeedHumanisedList.ToLowerInvariant()} available from {settings.OrganisationName}",
+                Documentation = settings.OpenBookingAPIDocumentationUrl ?? new Uri("https://developer.openactive.io/go/open-booking-api"),
+                TermsOfService = settings.OpenBookingAPITermsOfServiceUrl,
+                EndpointUrl = settings.OpenBookingAPIBaseUrl,
+                AuthenticationAuthority = settings.OpenBookingAPIAuthenticationAuthorityUrl,
+                ConformsTo = new List<Uri> { new Uri("https://openactive.io/open-booking-api/EditorsDraft/") },
+                EndpointDescription = new Uri("https://www.openactive.io/open-booking-api/EditorsDraft/swagger.json"),
+                LandingPage = settings.OpenBookingAPIRegistrationUrl
             }
         };
 

@@ -140,7 +140,7 @@ namespace OpenActive.DatasetSite.NET
                     Documentation = settings.OpenBookingAPIDocumentationUrl ?? new Uri("https://developer.openactive.io/go/open-booking-api"),
                     TermsOfService = settings.OpenBookingAPITermsOfServiceUrl,
                     EndpointUrl = settings.OpenBookingAPIBaseUrl,
-                    AuthenticationAuthority = settings.OpenBookingAPIAuthenticationAuthority,
+                    AuthenticationAuthority = settings.OpenBookingAPIAuthenticationAuthorityUrl,
                     ConformsTo = new List<Uri> { new Uri("https://openactive.io/open-booking-api/EditorsDraft/") },
                     EndpointDescription = new Uri("https://www.openactive.io/open-booking-api/EditorsDraft/swagger.json"),
                     LandingPage = settings.OpenBookingAPIRegistrationUrl

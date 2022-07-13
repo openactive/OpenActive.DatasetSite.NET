@@ -30,7 +30,7 @@ jobs:
         working-directory: ./OpenActive.DatasetSite.NET.Generator/
 
       - name: Update OpenActive.DatasetSite.NET.Generator with latest data-models and dataset-site-template
-        run: npm update @openactive/data-models @opoenactive/dataset-site-template
+        run: npm update @openactive/data-models @openactive/dataset-site-template
         working-directory: ./OpenActive.DatasetSite.NET.Generator/
 
       - name: Run .NET dataset site generator
@@ -40,7 +40,15 @@ jobs:
       - name: Update OpenActive.NET to latest version
         run: dotnet add package OpenActive.NET
         working-directory: ./OpenActive.DatasetSite.NET/
-      
+        
+      - name: git stash if material changes have not been made
+        # When considering whether it's worth making a PR, ignore the following:
+        # - The dataset-site-template version number updating within the template in DatasetSiteMustacheTemplate.cs (affects one line)
+        # - Any updates to the package.json or package-lock.json files in OpenActive.DatasetSite.NET.Generator (not worth creating a PR JUST for these if the new version did not have any implications)
+        # git stashing if no material changes allows the next step to close the PR if one is already open
+        run: if [ "$(git diff --numstat | grep -vc '^1 .*DatasetSiteMustacheTemplate\.cs\|.*package\.json\|.*package-lock\.json$')" -eq "0" ]; then git stash; else echo "Material changes found"; fi
+        working-directory: ./
+
       - name: Create Pull Request
         id: cpr
         uses: peter-evans/create-pull-request@v3
