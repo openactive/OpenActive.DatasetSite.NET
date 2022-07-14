@@ -105,7 +105,7 @@ namespace OpenActive.DatasetSite.NET
                 Keywords = keywords,
                 License = new Uri("https://creativecommons.org/licenses/by/4.0/"),
                 DiscussionUrl = settings.DatasetDiscussionUrl,
-                Documentation = settings.DatasetDocumentationUrl ?? new Uri("https://developer.openactive.io/go/open-opportunity-data"),
+                Documentation = settings.DatasetDocumentationUrl ?? new Uri("https://permalink.openactive.io/dataset-site/open-data-documentation"),
                 InLanguage = settings.DatasetLanguages,
                 SchemaVersion = new Uri("https://openactive.io/modelling-opportunity-data/2.0/"),
                 Publisher = new OpenActive.NET.Organization
@@ -137,7 +137,7 @@ namespace OpenActive.DatasetSite.NET
                 {
                     Name = "Open Booking API",
                     Description = $"API that allows for seamless booking experiences to be created for {dataFeedHumanisedList.ToLowerInvariant()} available from {settings.OrganisationName}",
-                    Documentation = settings.OpenBookingAPIDocumentationUrl ?? new Uri("https://developer.openactive.io/go/open-booking-api"),
+                    Documentation = settings.OpenBookingAPIDocumentationUrl ?? new Uri("https://permalink.openactive.io/dataset-site/open-booking-api-documentation"),
                     TermsOfService = settings.OpenBookingAPITermsOfServiceUrl,
                     EndpointUrl = settings.OpenBookingAPIBaseUrl,
                     AuthenticationAuthority = settings.OpenBookingAPIAuthenticationAuthorityUrl,

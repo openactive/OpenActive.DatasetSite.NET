@@ -24,9 +24,9 @@ namespace OpenActive.DatasetSite.NET
         public Uri DatasetDiscussionUrl { get; set; }
 
         /// <summary>
-        /// Any documentation specific to the dataset. Defaults to https://developer.openactive.io/ if not provided, which should be used if no documentation is available.
+        /// Any documentation specific to the dataset. Defaults to https://permalink.openactive.io/dataset-site/open-data-documentation if not provided, which should be used if no system-specific documentation is available.
         /// </summary>
-        public Uri DatasetDocumentationUrl { get; set; } = new Uri("https://developer.openactive.io/");
+        public Uri DatasetDocumentationUrl { get; set; } = new Uri("https://permalink.openactive.io/dataset-site/open-data-documentation");
 
         /// <summary>
         /// The languages available in the dataset, following the IETF BCP 47 standard. Defaults to 'en-GB'.
@@ -95,9 +95,9 @@ namespace OpenActive.DatasetSite.NET
         public Uri OpenBookingAPIBaseUrl { get; set; }
 
         /// <summary>
-        /// The documentation URL for the Open Booking API.
+        /// The documentation URL for the Open Booking API. Defaults to https://permalink.openactive.io/dataset-site/open-booking-api-documentation if not provided, which should be used if no system-specific documentation is available.
         /// </summary>
-        public Uri OpenBookingAPIDocumentationUrl { get; set; }
+        public Uri OpenBookingAPIDocumentationUrl { get; set; } = new Uri("https://permalink.openactive.io/dataset-site/open-booking-api-documentation");
 
         /// <summary>
         /// The terms of service URL for the Open Booking API.
