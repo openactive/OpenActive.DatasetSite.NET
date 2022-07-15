@@ -4,10 +4,13 @@ var request = require('sync-request');
 var path = require('path');
 const { getModels, getEnums, getMetaData } = require('@openactive/data-models');
 const { getDatasetSiteTemplateSync, getStaticAssetsArchiveUrl, getStaticAssetsVersion } = require('@openactive/dataset-site-template');
+const { exit } = require('process');
 
 const DATA_MODEL_OUTPUT_DIR = "../OpenActive.DatasetSite.NET/metadata/";
 const SOLUTION_README_FILE_PATH = "../README.md";
+const VERSION_FILE_PATH = "../version.json";
 
+updateVersionFile();
 removeFiles()
 generateDatasetSiteMustacheTemplate();
 generateOpportunityTypes();
@@ -28,6 +31,20 @@ function updateReadme() {
     updateFile(SOLUTION_README_FILE_PATH, x => x.replace(/\[CSP compatible static assets archive[^\]]*\]\([^)]*\.zip\)/g, (match) => {
         return `[CSP compatible static assets archive v${getStaticAssetsVersion()}](${getStaticAssetsArchiveUrl()})`;
     }));
+}
+
+function updateVersionFile() {
+    // Align version number major version to version of template
+    updateFile(VERSION_FILE_PATH, x => {
+        const json = JSON.parse(x);
+        const newVersion = `${getStaticAssetsVersion()}.0`;
+        if (json.version == newVersion) {
+            console.log("NO MAJOR VERSION CHANGE DETECTED: Hence no update is required. Updates to the template within dataset-site-template must come with a major version bump");
+            exit();
+        }
+        json.version = newVersion;
+        return JSON.stringify(json, null, 2);
+    });
 }
 
 function renderMustacheTemplateFile(singleFileTemplate, cspTemplate) {
