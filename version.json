@@ -4,6 +4,7 @@
   "publicReleaseRefSpec": [
     "^refs/heads/master$"
   ],
+  "versionHeightOffset": -1,
   "cloudBuild": {
     "setVersionVariables": true,
     "buildNumber": {
