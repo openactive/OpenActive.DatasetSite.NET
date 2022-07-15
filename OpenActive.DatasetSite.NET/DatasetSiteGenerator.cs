@@ -18,7 +18,7 @@ namespace OpenActive.DatasetSite.NET
         /// <param name="supportedFeedTypes">The supplied list auto-generates the metadata associated which each feed using best-practice values.</param>
         /// <param name="staticAssetsPathUrl">A relative or absolute URI path of the directory containing the self-hosted static asset files for the CSP-compatible template. If set, the CSP-compatible template will be used.</param>
         /// <returns>String containing human readable list</returns>
-        public static string RenderSimpleDatasetSite(DatasetSiteGeneratorSettings settings, List<OpportunityType> supportedFeedTypes, Uri staticAssetsPathUrl = null)
+        public static string RenderSimpleDatasetSite(DatasetSiteGeneratorSettings settings, List<OpportunityType> supportedFeedTypes, string staticAssetsPathUrl = null)
         {
             // Check input is not null
             if (settings == null) throw new ArgumentNullException(nameof(settings));
@@ -67,7 +67,7 @@ namespace OpenActive.DatasetSite.NET
         /// <param name="dataFeedDescriptions">A list of strings that each describe the dataset</param>
         /// <param name="staticAssetsPathUrl">A relative or absolute URI path of the directory containing the self-hosted static asset files for the CSP-compatible template. If set, the CSP-compatible template will be used.</param>
         /// <returns>Returns a string corresponding to the compiled HTML</returns>
-        public static string RenderSimpleDatasetSiteFromDataDownloads(DatasetSiteGeneratorSettings settings, List<DataDownload> dataDownloads, List<string> dataFeedDescriptions, Uri staticAssetsPathUrl = null)
+        public static string RenderSimpleDatasetSiteFromDataDownloads(DatasetSiteGeneratorSettings settings, List<DataDownload> dataDownloads, List<string> dataFeedDescriptions, string staticAssetsPathUrl = null)
         {
             // Check input is not null
             if (settings == null) throw new ArgumentNullException(nameof(settings));
@@ -157,7 +157,7 @@ namespace OpenActive.DatasetSite.NET
         /// <param name="dataset">The an object containing the properties required to render the dataset site</param>
         /// <param name="staticAssetsPathUrl">A relative or absolute URI path of the directory containing the self-hosted static asset files for the CSP-compatible template. If set, the CSP-compatible template will be used.</param>
         /// <returns>Returns a string corresponding to the compiled HTML</returns>
-        public static string RenderDatasetSite(Dataset dataset, Uri staticAssetsPathUrl = null)
+        public static string RenderDatasetSite(Dataset dataset, string staticAssetsPathUrl = null)
         {
             var template = staticAssetsPathUrl == null ? 
                 DatasetSiteMustacheTemplate.SingleTemplateFileContent :
@@ -173,7 +173,7 @@ namespace OpenActive.DatasetSite.NET
         /// <param name="mustacheTemplate">A string containing the contents of a potentially customised version of datasetsite.mustache</param>
         /// <param name="staticAssetsPathUrl">A relative or absolute URI path of the directory containing the self-hosted static asset files for the CSP-compatible template. If set, the CSP-compatible template will be used.</param>
         /// <returns>Returns a string corresponding to the compiled HTML</returns>
-        public static string RenderDatasetSiteWithTemplate(Dataset dataset, string mustacheTemplate, Uri staticAssetsPathUrl = null)
+        public static string RenderDatasetSiteWithTemplate(Dataset dataset, string mustacheTemplate, string staticAssetsPathUrl = null)
         {
             // Check input dataset is not null
             if (dataset == null) throw new ArgumentNullException(nameof(dataset));
@@ -191,7 +191,7 @@ namespace OpenActive.DatasetSite.NET
             // For the CSP-compatible template, set the "staticAssetsPathUrl" property at the root of the JSON to the relative or absolute
             // URL path of the provided directory (containing the CSP static asset files), without a trailing slash (/)
             if (staticAssetsPathUrl != null) {
-                jsonObj.Add("staticAssetsPathUrl", staticAssetsPathUrl.ToString().TrimEnd(new[] { '/' }));
+                jsonObj.Add("staticAssetsPathUrl", staticAssetsPathUrl.TrimEnd(new[] { '/' }));
             }
 
             //Use the resulting JSON with the mustache template to render the dataset site.
