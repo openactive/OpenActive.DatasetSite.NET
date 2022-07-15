@@ -54,6 +54,11 @@ namespace OpenActive.DatasetSite.NET.Tests
             var html = DatasetSiteGenerator.RenderSimpleDatasetSite(settings, supportedFeeds);
             output.WriteLine(html);
             Assert.Contains(settings.OrganisationPlainTextDescription, html);
+
+            var html2 = DatasetSiteGenerator.RenderSimpleDatasetSite(settings, supportedFeeds, new Uri("./example-assets-directory/"));
+            output.WriteLine(html2);
+            // Slash is removed and hierarchical path normalised
+            Assert.Contains("\"example-assets-directory/datasetsite.styles", html2);
         }
     }
 }
