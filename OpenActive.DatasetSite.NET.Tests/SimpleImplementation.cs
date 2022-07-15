@@ -61,6 +61,7 @@ namespace OpenActive.DatasetSite.NET.Tests
             output.WriteLine(html);
             // Slash should be removed, which this asserts
             Assert.Contains("\"./example-assets-directory/datasetsite.styles", html);
+            Assert.Contains(settings.OrganisationPlainTextDescription, html);
         }
     }
 }
