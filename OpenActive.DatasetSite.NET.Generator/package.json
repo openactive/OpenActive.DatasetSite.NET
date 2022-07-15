@@ -11,8 +11,8 @@
   "author": "Nick Evans",
   "license": "MIT",
   "dependencies": {
-    "@openactive/data-models": "^2.0.285",
-    "@openactive/dataset-site-template": "^3.0.0",
+    "@openactive/data-models": "^2.0.286",
+    "@openactive/dataset-site-template": "^6.0.0",
     "fs-extra": "^7.0.1",
     "sync-request": "^6.0.0"
   }
