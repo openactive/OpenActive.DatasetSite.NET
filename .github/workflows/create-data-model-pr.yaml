@@ -30,7 +30,7 @@ jobs:
         working-directory: ./OpenActive.DatasetSite.NET.Generator/
 
       - name: Update OpenActive.DatasetSite.NET.Generator with latest data-models and dataset-site-template
-        run: npm update @openactive/data-models @openactive/dataset-site-template
+        run: npm install @openactive/data-models@latest @openactive/dataset-site-template@latest
         working-directory: ./OpenActive.DatasetSite.NET.Generator/
 
       - name: Run .NET dataset site generator
