@@ -33,16 +33,21 @@ function updateReadme() {
     }));
 }
 
+function getMajorVersion(version) {
+    return version.substring(0, version.indexOf("."));
+}
+
 function updateVersionFile() {
     // Align version number major version to version of template
     updateFile(VERSION_FILE_PATH, x => {
         const json = JSON.parse(x);
-        const newVersion = `${getStaticAssetsVersion()}.0`;
-        if (json.version == newVersion) {
+        const oldMajorVersion = getMajorVersion(json.version);
+        const newMajorVersion = getStaticAssetsVersion();
+        if (parseInt(newMajorVersion) <= parseInt(oldMajorVersion)) {
             console.log("NO MAJOR VERSION CHANGE DETECTED: Hence no update is required. Updates to the template within dataset-site-template must come with a major version bump");
             exit();
         }
-        json.version = newVersion;
+        json.version = `${newMajorVersion}.0`;
         return JSON.stringify(json, null, 2);
     });
 }
