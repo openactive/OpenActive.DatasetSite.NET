@@ -30,9 +30,11 @@ Simply call one of the Render methods detailed below to output self-contained HT
 
 ### Simple implementation
 
-> `RenderSimpleDatasetSite(settings, supportedOpportunityTypes)`
+> `RenderSimpleDatasetSite(settings, supportedOpportunityTypes, staticAssetsPathUrl)`
 
 Returns a string corresponding to the compiled HTML, based on an embedded version of `datasetsite.mustache`, the provided `settings`, and `supportedOpportunityTypes`.
+
+If `staticAssetsPathUrl` is provided, the [CSP-compatible template](https://developer.openactive.io/publishing-data/dataset-sites#template-hosting-options) is rendered. In this case you must ensure that you are serving the contents of [CSP compatible static assets archive](/src/datasetsite-csp.static.zip) at this location.
 
 `supportedOpportunityTypes` must be a `List<OpportunityType>`, which auto-generates the metadata associated which each feed using best-practice values.
 
@@ -117,7 +119,7 @@ public class DatasetSiteController : Controller
 
 ### Feed-level customisation
 
-> `RenderSimpleDatasetSiteFromDataDownloads(settings, dataDownloads, dataFeedDescriptions)`
+> `RenderSimpleDatasetSiteFromDataDownloads(settings, dataDownloads, dataFeedDescriptions, staticAssetsPathUrl)`
 
 Returns a string corresponding to the compiled HTML, based on an embedded version of `datasetsite.mustache`, the provided [`settings`](#datasetsitegeneratorsettings), `dataDownloads` and `dataFeedDescriptions`.
 
@@ -130,6 +132,9 @@ var dataFeedDescriptions = new List<string> {
     "Facilities"
 };
 ```
+
+If `staticAssetsPathUrl` is provided, the [CSP-compatible template](https://developer.openactive.io/publishing-data/dataset-sites#template-hosting-options) is rendered. In this case you must ensure that you are serving the contents of [CSP compatible static assets archive](/src/datasetsite-csp.static.zip) at this location.
+
 
 #### Example
 
@@ -221,6 +226,8 @@ public class DatasetSiteController : Controller
 Returns a string corresponding to the compiled HTML, based on an embedded version of `datasetsite.mustache`, and the provided `dataset`.
 
 The `dataset` argument must be an object of type `OpenActive.NET.Dataset`, and must contain the properties required to render the dataset site.
+
+If `staticAssetsPathUrl` is provided, the [CSP-compatible template](https://developer.openactive.io/publishing-data/dataset-sites#template-hosting-options) is rendered. In this case you must ensure that you are serving the contents of [CSP compatible static assets archive](/src/datasetsite-csp.static.zip) at this location.
 
 #### Example
 
@@ -361,12 +368,14 @@ public class DatasetSiteController : Controller
 
 ### Total customisation
 
-> `RenderDatasetSiteWithTemplate(dataset, mustacheTemplate)`
+> `RenderDatasetSiteWithTemplate(dataset, mustacheTemplate, staticAssetsPathUrl)`
 
 Returns a string corresponding to the compiled HTML, based on the supplied version of `datasetsite.mustache`, and the provided `dataset`.
 
 The `dataset` argument must be an object of type `OpenActive.NET.Dataset`, and must contain the properties required to render the dataset site.
 
 The `mustacheTemplate` argument must be a string containing the contents of a potentially customised version of `datasetsite.mustache`.
+
+If the `staticAssetsPathUrl` argument is provided, it is included in the data passed to the mustache template.
 
 Please note that any customisations must maintain conformance with the [Dataset API Discovery specification](https://www.openactive.io/dataset-api-discovery/EditorsDraft/).
