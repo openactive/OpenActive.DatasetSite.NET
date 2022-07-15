@@ -17,18 +17,23 @@ function removeFiles() {
 }
 
 function generateDatasetSiteMustacheTemplate (datasetSiteTemplateUrl) {
-    var template = getDatasetSiteTemplateSync(true);
-    writeFile('DatasetSiteMustacheTemplate', renderMustacheTemplateFile(template));
+    var singleFileTemplate = getDatasetSiteTemplateSync(true);
+    var cspTemplate = getDatasetSiteTemplateSync(false);
+    writeFile('DatasetSiteMustacheTemplate', renderMustacheTemplateFile(singleFileTemplate, cspTemplate));
 }
 
-function renderMustacheTemplateFile(content) {
+function renderMustacheTemplateFile(singleFileTemplate, cspTemplate) {
     return `
 namespace OpenActive.DatasetSite.NET
 {
     public static class DatasetSiteMustacheTemplate
     {
-        public const string Content = @"
-${content.replace(/\"/g, '""')}
+        public const string SingleTemplateFileContent = @"
+${singleFileTemplate.replace(/\"/g, '""')}
+";
+
+        public const string CspCompatibleTemplateFileContent = @"
+${cspTemplate.replace(/\"/g, '""')}
 ";
     }
 }
