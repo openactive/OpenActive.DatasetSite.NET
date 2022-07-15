@@ -3,13 +3,15 @@ var fsExtra = require('fs-extra');
 var request = require('sync-request');
 var path = require('path');
 const { getModels, getEnums, getMetaData } = require('@openactive/data-models');
-const { getDatasetSiteTemplateSync } = require('@openactive/dataset-site-template');
+const { getDatasetSiteTemplateSync, getStaticAssetsArchiveUrl, getStaticAssetsVersion } = require('@openactive/dataset-site-template');
 
 const DATA_MODEL_OUTPUT_DIR = "../OpenActive.DatasetSite.NET/metadata/";
+const SOLUTION_README_FILE_PATH = "../README.md";
 
 removeFiles()
 generateDatasetSiteMustacheTemplate();
 generateOpportunityTypes();
+updateReadme();
 
 function removeFiles() {
     // Empty output directories
@@ -17,18 +19,29 @@ function removeFiles() {
 }
 
 function generateDatasetSiteMustacheTemplate (datasetSiteTemplateUrl) {
-    var template = getDatasetSiteTemplateSync(true);
-    writeFile('DatasetSiteMustacheTemplate', renderMustacheTemplateFile(template));
+    var singleFileTemplate = getDatasetSiteTemplateSync(true);
+    var cspTemplate = getDatasetSiteTemplateSync(false);
+    writeFile('DatasetSiteMustacheTemplate', renderMustacheTemplateFile(singleFileTemplate, cspTemplate));
 }
 
-function renderMustacheTemplateFile(content) {
+function updateReadme() {
+    updateFile(SOLUTION_README_FILE_PATH, x => x.replace(/\[CSP compatible static assets archive[^\]]*\]\([^)]*\.zip\)/g, (match) => {
+        return `[CSP compatible static assets archive v${getStaticAssetsVersion()}](${getStaticAssetsArchiveUrl()})`;
+    }));
+}
+
+function renderMustacheTemplateFile(singleFileTemplate, cspTemplate) {
     return `
 namespace OpenActive.DatasetSite.NET
 {
     public static class DatasetSiteMustacheTemplate
     {
-        public const string Content = @"
-${content.replace(/\"/g, '""')}
+        public const string SingleTemplateFileContent = @"
+${singleFileTemplate.replace(/\"/g, '""')}
+";
+
+        public const string CspCompatibleTemplateFileContent = @"
+${cspTemplate.replace(/\"/g, '""')}
 ";
     }
 }
@@ -86,11 +99,19 @@ function writeFile(name, content) {
     console.log("NAME: " + filename);
     console.log(content);
 
-    fs.writeFile(DATA_MODEL_OUTPUT_DIR + filename, content, function (err) {
-        if (err) {
-            return console.log(err);
-        }
+    fs.writeFileSync(DATA_MODEL_OUTPUT_DIR + filename, content);
 
-        console.log("FILE SAVED: " + filename);
-    });
+    console.log("FILE SAVED: " + filename);
+}
+
+function updateFile(filepath, mutationFn) {
+    const currentContent = fs.readFileSync(filepath, "utf-8");
+    const newContent = mutationFn(currentContent);
+    
+    console.log("NAME: " + filepath);
+    console.log(newContent);
+
+    fs.writeFileSync(filepath, newContent);
+
+    console.log("FILE SAVED: " + filepath);
 }

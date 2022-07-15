@@ -16,8 +16,9 @@ namespace OpenActive.DatasetSite.NET
         /// </summary>
         /// <param name="settings">Configuration settings for the dataset site</param>
         /// <param name="supportedFeedTypes">The supplied list auto-generates the metadata associated which each feed using best-practice values.</param>
+        /// <param name="staticAssetsPathUrl">A relative or absolute URI path of the directory containing the self-hosted static asset files for the CSP-compatible template. If set, the CSP-compatible template will be used.</param>
         /// <returns>String containing human readable list</returns>
-        public static string RenderSimpleDatasetSite(DatasetSiteGeneratorSettings settings, List<OpportunityType> supportedFeedTypes)
+        public static string RenderSimpleDatasetSite(DatasetSiteGeneratorSettings settings, List<OpportunityType> supportedFeedTypes, string staticAssetsPathUrl = null)
         {
             // Check input is not null
             if (settings == null) throw new ArgumentNullException(nameof(settings));
@@ -38,7 +39,7 @@ namespace OpenActive.DatasetSite.NET
 
             var dataFeedDescriptions = supportedOpportunityTypes.Select(x => x.ThemeDisplayName).Distinct().ToList();
 
-            return RenderSimpleDatasetSiteFromDataDownloads(settings, dataDownloads, dataFeedDescriptions);
+            return RenderSimpleDatasetSiteFromDataDownloads(settings, dataDownloads, dataFeedDescriptions, staticAssetsPathUrl);
         }
 
         /// <summary>
@@ -64,8 +65,9 @@ namespace OpenActive.DatasetSite.NET
         /// <param name="settings">Configuration settings for the dataset site</param>
         /// <param name="dataDownloads">A list of DataDownload objects which each describe an available open data feed</param>
         /// <param name="dataFeedDescriptions">A list of strings that each describe the dataset</param>
+        /// <param name="staticAssetsPathUrl">A relative or absolute URI path of the directory containing the self-hosted static asset files for the CSP-compatible template. If set, the CSP-compatible template will be used.</param>
         /// <returns>Returns a string corresponding to the compiled HTML</returns>
-        public static string RenderSimpleDatasetSiteFromDataDownloads(DatasetSiteGeneratorSettings settings, List<DataDownload> dataDownloads, List<string> dataFeedDescriptions)
+        public static string RenderSimpleDatasetSiteFromDataDownloads(DatasetSiteGeneratorSettings settings, List<DataDownload> dataDownloads, List<string> dataFeedDescriptions, string staticAssetsPathUrl = null)
         {
             // Check input is not null
             if (settings == null) throw new ArgumentNullException(nameof(settings));
@@ -146,17 +148,22 @@ namespace OpenActive.DatasetSite.NET
                     LandingPage = settings.OpenBookingAPIRegistrationUrl
                 }
             };
-            return RenderDatasetSite(dataset);
+            return RenderDatasetSite(dataset, staticAssetsPathUrl);
         }
 
         /// <summary>
         /// Returns a string corresponding to the compiled HTML, based on an embedded version of `datasetsite.mustache`, and the provided `dataset`.
         /// </summary>
         /// <param name="dataset">The an object containing the properties required to render the dataset site</param>
+        /// <param name="staticAssetsPathUrl">A relative or absolute URI path of the directory containing the self-hosted static asset files for the CSP-compatible template. If set, the CSP-compatible template will be used.</param>
         /// <returns>Returns a string corresponding to the compiled HTML</returns>
-        public static string RenderDatasetSite(Dataset dataset)
+        public static string RenderDatasetSite(Dataset dataset, string staticAssetsPathUrl = null)
         {
-            return RenderDatasetSiteWithTemplate(dataset, DatasetSiteMustacheTemplate.Content);
+            var template = staticAssetsPathUrl == null ? 
+                DatasetSiteMustacheTemplate.SingleTemplateFileContent :
+                DatasetSiteMustacheTemplate.CspCompatibleTemplateFileContent;
+
+            return RenderDatasetSiteWithTemplate(dataset, template, staticAssetsPathUrl);
         }
 
         /// <summary>
@@ -164,8 +171,9 @@ namespace OpenActive.DatasetSite.NET
         /// </summary>
         /// <param name="dataset">The an object containing the properties required to render the dataset site</param>
         /// <param name="mustacheTemplate">A string containing the contents of a potentially customised version of datasetsite.mustache</param>
+        /// <param name="staticAssetsPathUrl">A relative or absolute URI path of the directory containing the self-hosted static asset files for the CSP-compatible template. If set, the CSP-compatible template will be used.</param>
         /// <returns>Returns a string corresponding to the compiled HTML</returns>
-        public static string RenderDatasetSiteWithTemplate(Dataset dataset, string mustacheTemplate)
+        public static string RenderDatasetSiteWithTemplate(Dataset dataset, string mustacheTemplate, string staticAssetsPathUrl = null)
         {
             // Check input dataset is not null
             if (dataset == null) throw new ArgumentNullException(nameof(dataset));
@@ -179,6 +187,12 @@ namespace OpenActive.DatasetSite.NET
             // Stringify the input JSON using formatting, and place the contents of the string
             // within the "jsonld" property at the root of the JSON itself.
             jsonObj.Add("jsonld", jsonObj.ToString(Formatting.Indented));
+
+            // For the CSP-compatible template, set the "staticAssetsPathUrl" property at the root of the JSON to the relative or absolute
+            // URL path of the provided directory (containing the CSP static asset files), without a trailing slash (/)
+            if (staticAssetsPathUrl != null) {
+                jsonObj.Add("staticAssetsPathUrl", staticAssetsPathUrl.TrimEnd(new[] { '/' }));
+            }
 
             //Use the resulting JSON with the mustache template to render the dataset site.
             var stubble = new StubbleBuilder().Configure(s => s.AddJsonNet()).Build();

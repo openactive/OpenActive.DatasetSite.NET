@@ -20,10 +20,10 @@ jobs:
         with:
           node-version: 14.x
           
-      - name: Setup .NET Core 3.1.x
-        uses: actions/setup-dotnet@v1
+      - name: Setup .NET 6.0.x
+        uses: actions/setup-dotnet@v2
         with:
-          dotnet-version: 3.1.x
+          dotnet-version: 6.0.x
 
       - name: Install OpenActive.DatasetSite.NET.Generator
         run: npm install
@@ -43,10 +43,11 @@ jobs:
         
       - name: git stash if material changes have not been made
         # When considering whether it's worth making a PR, ignore the following:
-        # - The dataset-site-template version number updating within the template in DatasetSiteMustacheTemplate.cs (affects one line)
+        # - The dataset-site-template version number updating within the template in DatasetSiteMustacheTemplate.cs (affects four lines)
+        # - The dataset-site-template version number updating within the template in README.md (affects three lines)
         # - Any updates to the package.json or package-lock.json files in OpenActive.DatasetSite.NET.Generator (not worth creating a PR JUST for these if the new version did not have any implications)
         # git stashing if no material changes allows the next step to close the PR if one is already open
-        run: if [ "$(git diff --numstat | grep -vc '^1\s.*DatasetSiteMustacheTemplate\.cs\|.*package\.json\|.*package-lock\.json$')" -eq "0" ]; then git stash; else echo "Material changes found"; fi
+        run: if [ "$(git diff --numstat | grep -vc '^4\s.*DatasetSiteMustacheTemplate\.cs\|3\s.*README\.md\|.*package\.json\|.*package-lock\.json$')" -eq "0" ]; then git stash; else echo "Material changes found"; fi
         working-directory: ./
 
       - name: Create Pull Request
