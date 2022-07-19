@@ -23,7 +23,7 @@ namespace OpenActive.DatasetSite.NET.Tests
             OpenBookingAPIAuthenticationAuthorityUrl = "https://auth.acmebooker.example.com".ParseUrlOrNull(),
             DatasetSiteUrl = "https://halo-odi.legendonlineservices.co.uk/openactive/".ParseUrlOrNull(),
             DatasetDiscussionUrl = "https://github.com/gll-better/opendata".ParseUrlOrNull(),
-            DatasetDocumentationUrl = "https://docs.acmebooker.example.com/".ParseUrlOrNull(),
+            DatasetDocumentationUrl = "https://permalink.openactive.io/dataset-site/open-data-documentation".ParseUrlOrNull(),
             DatasetLanguages = new List<string> { "en-GB" },
             OrganisationName = "Better",
             OrganisationUrl = "https://www.better.org.uk/".ParseUrlOrNull(),
