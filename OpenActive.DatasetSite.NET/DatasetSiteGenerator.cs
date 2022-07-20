@@ -128,7 +128,7 @@ namespace OpenActive.DatasetSite.NET
                 BackgroundImage = new ImageObject {
                     Url = settings.BackgroundImageUrl
                 },
-                BookingService = settings.PlatformName == null ? null : new BookingService
+                BookingService = settings.PlatformName == null && settings.TestSuiteCertificateUrl == null ? null : new BookingService
                 {
                     Name = settings.PlatformName,
                     Url = settings.PlatformUrl,
