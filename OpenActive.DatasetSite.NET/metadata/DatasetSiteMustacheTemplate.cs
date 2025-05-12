@@ -6,7 +6,7 @@ namespace OpenActive.DatasetSite.NET
         public const string SingleTemplateFileContent = @"
 <!DOCTYPE HTML>
 <!--
-  OpenActive Dataset Site Template version 7, from https://unpkg.com/@openactive/dataset-site-template@7.0.0/dist/datasetsite.mustache
+  OpenActive Dataset Site Template version 8, from https://unpkg.com/@openactive/dataset-site-template@8.0.0/dist/datasetsite.mustache
 -->
 <!--
   Design: Identity by HTML5 UP
@@ -1360,11 +1360,11 @@ body {
         public const string CspCompatibleTemplateFileContent = @"
 <!DOCTYPE HTML>
 <!--
-  OpenActive Dataset Site Template version 7, from https://unpkg.com/@openactive/dataset-site-template@7.0.0/dist/datasetsite-csp.mustache
+  OpenActive Dataset Site Template version 8, from https://unpkg.com/@openactive/dataset-site-template@8.0.0/dist/datasetsite-csp.mustache
   
-  This HTML file must reference a self-hosted 'datasetsite.styles.v7.css' file, co-located with the rest
+  This HTML file must reference a self-hosted 'datasetsite.styles.v8.css' file, co-located with the rest
   of the static assets from the following archive:
-  https://unpkg.com/@openactive/dataset-site-template@7.0.0/dist/datasetsite-csp.static.zip
+  https://unpkg.com/@openactive/dataset-site-template@8.0.0/dist/datasetsite-csp.static.zip
 -->
 <!--
   Design: Identity by HTML5 UP
@@ -1407,11 +1407,11 @@ body {
     </script>
     
     <!--
-      This stylesheet href must reference a self-hosted 'datasetsite.styles.v7.css' file in
+      This stylesheet href must reference a self-hosted 'datasetsite.styles.v8.css' file in
       the same directory as the other static assets sourced from the following archive:
-      https://unpkg.com/@openactive/dataset-site-template@7.0.0/dist/datasetsite-csp.static.zip
+      https://unpkg.com/@openactive/dataset-site-template@8.0.0/dist/datasetsite-csp.static.zip
     -->
-    <link rel=""stylesheet"" href=""{{{staticAssetsPathUrl}}}/datasetsite.styles.v7.css"" crossorigin=""anonymous"">
+    <link rel=""stylesheet"" href=""{{{staticAssetsPathUrl}}}/datasetsite.styles.v8.css"" crossorigin=""anonymous"">
 
 </head>
 <body id=""booking"" background=""{{backgroundImage.url}}"">
@@ -1419,9 +1419,9 @@ body {
       <p></p>
       <p><large><strong>Error: Static Assets Not Found</strong><large></p>
       <p>This HTML page must reference self-hosted static assets located at the relative or absolute path configured by ""staticAssetsPathUrl"" in the mustache template source data.</p>
-      <p>""staticAssetsPathUrl"" is currently set to ""{{staticAssetsPathUrl}}"", and this page has failed to access this file: <pre>{{staticAssetsPathUrl}}/datasetsite.styles.v7.css</pre></p>
+      <p>""staticAssetsPathUrl"" is currently set to ""{{staticAssetsPathUrl}}"", and this page has failed to access this file: <pre>{{staticAssetsPathUrl}}/datasetsite.styles.v8.css</pre></p>
       <p>Please ensure that the assets at this location exactly match those in
-      <a href=""https://unpkg.com/@openactive/dataset-site-template@7.0.0/dist/datasetsite-csp.static.zip"">datasetsite-csp.static.zip version 7</a>.</p>
+      <a href=""https://unpkg.com/@openactive/dataset-site-template@8.0.0/dist/datasetsite-csp.static.zip"">datasetsite-csp.static.zip version 8</a>.</p>
       <p></p>
       <p>See the <a href=""https://github.com/openactive/dataset-site-template"">""CSP compatible template"" documentation</a> for more information</p>
       <p></p>
